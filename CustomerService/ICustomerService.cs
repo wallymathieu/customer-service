@@ -13,7 +13,7 @@ using System.ServiceModel.Activation;
 
 namespace Customers
 {
-    [ServiceContract(Namespace = "http://www.galasoft.ch", ConfigurationName = "CustomerService")]
+    [ServiceContract(Namespace = "http://www.galasoft.ch")]
     public interface ICustomerService
     {
 
