@@ -106,6 +106,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Index.html" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config" />
     <None Include="Properties\PublishProfiles\customerservice.pubxml" />

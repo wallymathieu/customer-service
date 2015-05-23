@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 using System.ServiceModel;
+using System.ServiceModel.Activation;
 
 namespace Customers
 {

@@ -4,7 +4,6 @@ using System.ServiceModel.Activation;
 
 namespace Customers
 {
-    [ServiceContract(Namespace = "")]
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public class CustomerService: ICustomerService
     {
