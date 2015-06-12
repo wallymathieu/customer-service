@@ -1,8 +1,5 @@
 ///<reference path="../typings/xmlbuilder/xmlbuilder.d.ts"/>
 ///<reference path="../typings/lodash/lodash.d.ts"/>
-///<reference path="Customer.ts"/>
-///<reference path="CustomerStore.ts"/>
-///<reference path="./CustomerStore.d.ts"/>
 "use strict";
 var builder = require('xmlbuilder');
 

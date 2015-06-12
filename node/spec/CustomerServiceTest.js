@@ -1,8 +1,4 @@
 ///<reference path="../typings/jasmine/jasmine.d.ts"/>
-///<reference path="../lib/CustomerService.d.ts" />
-///<reference path="../lib/Customer.d.ts" />
-///<reference path="FakeCustomerStore.d.ts" />
-///<reference path="testHelper.ts" />
 'use strict';
 var CustomerService = require("../lib/CustomerService");
 var FakeCustomerStore = require("./FakeCustomerStore");
