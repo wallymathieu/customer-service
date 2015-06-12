@@ -4,7 +4,7 @@
 		{
 			"path": ".",
 			"folder_exclude_patterns": ["node_modules",".tmp"],
-            "file_exclude_patterns": ["node/lib/*.js", "node/spec/*.js"]
+            "file_exclude_patterns": []
 		}
 	]
 }

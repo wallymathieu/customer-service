@@ -12,17 +12,13 @@
   "developedBy": "wallymathieu",
   "devDependencies": {
     "grunt": "^0.4.5",
-    "grunt-contrib-requirejs": "^0.4.4",
-    "grunt-contrib-uglify": "^0.9.1",
-    "grunt-typescript": "^0.6.2",
     "jasmine": "^2.3.1",
     "jasmine-node": "^1.14.5",
     "matchdep": "^0.3.0"
   },
   "dependencies": {
+    "bluebird": "^2.9.27",
     "lodash": "^3.9.3",
-    "requirejs": "^2.1.17",
-    "xml2js": "^0.4.9",
     "xmlbuilder": "^2.6.4"
   }
 }

@@ -12,42 +12,7 @@ module.exports = function(grunt) {
      * Constants for the Gruntfile so we can easily change the path for our environments.
      */
     BASE_PATH: '',
-    DEVELOPMENT_PATH: '',
-    /**
-     * Compiles the TypeScript files into one JavaScript file.
-     */
-    typescript: {
-      lib: {
-        basePath: '',
-        src: ['<%= DEVELOPMENT_PATH %>' + 'lib/CustomerService.ts'],
-        options: {
-          target: 'es5',
-          module: 'AMD',
-        }
-      },
-      jasmine: {
-        basePath: '',
-        src: ['<%= DEVELOPMENT_PATH %>' + 'spec/runTests.ts'],
-        options: {
-          target: 'es5',
-          module: 'AMD',
-        }
-      }
-    },
-    requirejs: {
-      compile: {
-        options: {
-          baseUrl: '<%= DEVELOPMENT_PATH %>' + '', // Path of source scripts, relative to this build file
-          mainConfigFile: '<%= DEVELOPMENT_PATH %>' + 'lib/config.js', // Path of shared configuration file, relative to this build file
-          name: 'spec/runTests', // Name of input script (.js extension inferred)
-          out: '<%= DEVELOPMENT_PATH %>' + 'spec/runSpec.js', // Path of built script output
-          fileExclusionRegExp: /.svn/, // Ignore all files matching this pattern
-          useStrict: true,
-          preserveLicenseComments: false,
-          optimize: 'none', // Use 'none' If you do not want to uglify.
-        }
-      }
-    }
+    DEVELOPMENT_PATH: ''
   });
-  grunt.registerTask('default', ['typescript', 'requirejs']);
+  grunt.registerTask('default');
 };
