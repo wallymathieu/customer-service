@@ -1,6 +1,6 @@
-///<reference path="../typings/lodash/lodash.d.ts"/>
+///<reference path='../typings/lodash/lodash.d.ts'/>
+'use strict';
 var _ = require('lodash');
-"use strict";
 
 function Customer() {
   var properties = ['accountNumber', 'addressCity', 'addressCountry', 'addressStreet', 'firstName', 'gender', 'lastName', 'pictureUri'];
