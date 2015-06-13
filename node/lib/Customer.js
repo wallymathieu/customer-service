@@ -2,16 +2,27 @@
 'use strict';
 var _ = require('lodash');
 
-function Customer() {
-  var properties = ['accountNumber', 'addressCity', 'addressCountry', 'addressStreet', 'firstName', 'gender', 'lastName', 'pictureUri'];
-  var def = _.reduce(properties, function (memo, next) {
+function defineWritableProperties(instance, properties) {
+  Object.defineProperties(instance, _.reduce(properties, function (memo, next) {
     memo[next] = {
       value: null,
       writable: true
     };
     return memo;
-  }, {});
-  Object.defineProperties(this, def);
+  }, {}));
+}
+
+function Customer() {
+  var properties = [
+    'accountNumber',
+    'addressCity',
+    'addressCountry',
+    'addressStreet',
+    'firstName',
+    'gender',
+    'lastName',
+    'pictureUri'];
+  defineWritableProperties(this, properties);
   Object.seal(this);
 }
 module.exports = Customer;

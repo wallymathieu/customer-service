@@ -5,5 +5,8 @@ function FakeCustomerStore(c) {
   this.getCustomers = function () {
     return Promise.resolve(c);
   };
+  this.saveCustomer = function (customer) {
+    return Promise.resolve(c);
+  };
 }
 module.exports = FakeCustomerStore;
