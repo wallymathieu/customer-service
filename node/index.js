@@ -1,53 +1,46 @@
 /*globals require, console*/
 'use strict';
-var http = require('http');
 var CustomerService = require('./lib/CustomerService');
 var CustomerStore = require('./lib/CustomerStore');
 var cs = new CustomerService(new CustomerStore());
-//var url = require('url');
-http.createServer(function (req, res) {
-  //console.log(Object.getOwnPropertyNames(req));
-  //console.log(url.parse(req.url));
-  switch (req.url) {
-  case '/CustomerService/GetCustomers':
-    res.writeHead(200, {
-      'Content-Type': 'application/xml'
-    });
-    cs.getCustomers().then(function (customers) {
-      res.end(customers.toString());
-    });
-    return;
-  case '/CustomerService/GetAllCustomers':
-    res.writeHead(200, {
-      'Content-Type': 'application/xml'
-    });
-    cs.getCustomers().then(function (customers) {
-      res.end(customers.toString());
-    });
-    return;
-  case '/CustomerService/SaveCustomer':
-    res.writeHead(200, {
-      'Content-Type': 'application/xml'
-    });
-    res.end('<x>not implemented</x>');
-    return;
-  case '/':
-    res.writeHead(200, {
-      'Content-Type': 'text/html'
-    });
-    res.end('<html><body>' +
-      '<h1>Customer Service</h1>' +
-      '<a href="/CustomerService/GetAllCustomers">Customer Service GetAllCustomers</a>' +
-      '</body></html>');
-    return;
-  default:
-    res.writeHead(404, {
-      'Content-Type': 'text/html'
-    });
-    res.end('<html><body>' +
-      '<h1>Page not found</h1>' +
-      '</body></html>');
-    return;
-  }
-}).listen(3000);
-console.log('Server running on port 3000.');
+var express = require('express');
+var app = express();
+
+app.get('/', function (req, res) {
+  res.send('<html><body>' +
+    '<h1>Customer Service</h1>' +
+    '<a href="/CustomerService/GetAllCustomers">Customer Service GetAllCustomers</a>' +
+    '</body></html>');
+});
+
+app.get('/CustomerService/GetCustomers', function (req, res) {
+  res.header('Content-Type', 'application/xml');
+  cs.getCustomers().then(function (customers) {
+    res.send(customers.toString());
+  });
+});
+
+app.get('/CustomerService/GetAllCustomers', function (req, res) {
+  res.header('Content-Type', 'application/xml');
+  cs.getCustomers().then(function (customers) {
+    res.send(customers.toString());
+  });
+});
+
+app.post('/CustomerService/SaveCustomer', function (req, res) {
+  res.header('Content-Type', 'application/xml');
+  res.send('<x>not implemented</x>');
+});
+
+app.get('*', function (req, res) {
+  res.send('Page not found', 404);
+});
+
+var server = app.listen(3000, function () {
+
+  var host = server.address().address;
+  var port = server.address().port;
+
+  console.log('Listening at http://%s:%s', host, port);
+
+});
