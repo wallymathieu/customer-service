@@ -17,7 +17,7 @@ namespace Customers
         {
             get
             {
-                return this.request.Url;
+                return request.Url;
             }
         }
 
@@ -25,7 +25,14 @@ namespace Customers
         {
             get
             {
-                return this.InputStream;
+                return request.InputStream;
+            }
+        }
+        public string HttpMethod
+        {
+            get
+            {
+                return request.HttpMethod;
             }
         }
     }

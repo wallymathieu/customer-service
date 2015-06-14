@@ -25,6 +25,14 @@ namespace Tests
                 return InputStreamFake;
             }
         }
+        public string HttpMethodFake;
+        public string HttpMethod
+        {
+            get
+            {
+                return HttpMethodFake;
+            }
+        }
     }
 }
 

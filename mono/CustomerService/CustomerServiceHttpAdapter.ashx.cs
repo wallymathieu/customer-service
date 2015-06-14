@@ -12,9 +12,9 @@ namespace Customers
     {
         private readonly Serializer serializer;
         private readonly ICustomerService svc;
-        public CustomerServiceHttpAdapter() : this(null, null)
-        {
-        }
+        public CustomerServiceHttpAdapter()
+            : this(null, null)
+        {}
 
         public CustomerServiceHttpAdapter(Serializer serializer, ICustomerService svc)
         {
@@ -36,18 +36,23 @@ namespace Customers
                 case "GetAllCustomers":
                     context.Response.ContentType = "application/xml";
                     context.Response.BinaryWrite(serializer.Serialize(svc.GetAllCustomers()));
-                    break;
+                    return;
                 case "SaveCustomer":
-                    context.Response.ContentType = "application/xml";
-                    var c = serializer.Deserialize<Customer>(context.Request.InputStream);
-                    context.Response.BinaryWrite(serializer.Serialize(svc.SaveCustomer(c)));
+                    if (context.Request.HttpMethod.Equals("POST"))
+                    {
+                        context.Response.ContentType = "application/xml";
+                        var c = serializer.Deserialize<Customer>(context.Request.InputStream);
+                        context.Response.BinaryWrite(serializer.Serialize(svc.SaveCustomer(c)));
+                        return;
+                    }
                     break;
-
                 default:
                     context.Response.StatusCode = 404;
                     context.Response.Write("Not found");
-                    break;
+                    return;
             }
+            context.Response.StatusCode = 404;
+            context.Response.Write("Not found");
         }
 
         public bool IsReusable

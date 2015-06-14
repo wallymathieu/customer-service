@@ -58,6 +58,7 @@ namespace Tests
                     FirstName = "Oskar", 
                     LastName = "Gewalli" 
                 });
+            context.RequestFake.HttpMethodFake = "POST";
             context.RequestFake.UrlFake = new Uri("http://localhost/CustomerService.svc/SaveCustomer/");
             using (SetAsInputStream(new Customer
                 { 

@@ -7,6 +7,7 @@ namespace Customers
     {
         Uri Url{get;}
         Stream InputStream{get;}
+        string HttpMethod{ get;}
     }
 }
 
