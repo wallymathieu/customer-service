@@ -68,7 +68,6 @@ namespace Tests
                 }))
             {
                 adapter.ProcessRequest(context);
-                Console.WriteLine(context.ResponseFake.Content.ToString());
                 context.ResponseFake.AsXml().Should().BeEquivalentTo(XDocument.Parse(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <boolean>true</boolean>"));
             }
@@ -79,7 +78,6 @@ namespace Tests
             var serializer = new Serializer();
             var stream = new MemoryStream();
             var writer=new StreamWriter(stream);
-
             var buffer = serializer.Serialize(customer);
             writer.Write(Encoding.UTF8.GetString(buffer));
             writer.Flush();
