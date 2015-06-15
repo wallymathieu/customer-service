@@ -31,15 +31,17 @@ describe('CustomerService', function () {
       c = new Customer();
       c.firstName = 'Oskar';
       c.lastName = 'Gewalli';
-      c.accountNumber = 1234;
+      c.accountNumber = 0;
+      c.addressCity = 'Stockholm';
       c.gender = 'Male';
       service = new CustomerService(new FakeCustomerStore([c]));
       customer = testHelper.getCustomerXml();
     });
     it('should return with updated with xml and update the customer', function (done) {
       service.saveCustomer(customer).then(function (data) {
-        expect(data.toString()).toEqual(customer);
+        expect(data.toString()).toEqual('<boolean>true</boolean>');
         expect(c.accountNumber).toEqual(0);
+        expect(c.addressCity).toEqual(null);
         done();
       });
     });

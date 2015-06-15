@@ -12,7 +12,8 @@ function CustomerStore() {
     return Promise.resolve([c]);
   };
   this.saveCustomer = function (customer) {
-    return Promise.resolve(c);
+    console.log(customer);
+    return Promise.resolve(false);
   };
 }
 module.exports = CustomerStore;

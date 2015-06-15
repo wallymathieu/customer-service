@@ -17,7 +17,7 @@
     "matchdep": "^0.3.0"
   },
   "dependencies": {
-    "bluebird": "^2.9.27",
+    "bluebird": "^2.9.30",
     "express": "^4.12.4",
     "lodash": "^3.9.3",
     "xmlbuilder": "^2.6.4"
