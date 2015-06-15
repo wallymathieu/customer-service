@@ -51,8 +51,8 @@ function getValue(v) {
       }
       return v[0];
     }
-    return null;
   }
+  throw new Error('Unknown value ' + v);
 }
 
 function CustomerService(customerStore) {
