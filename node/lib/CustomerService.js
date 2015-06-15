@@ -80,11 +80,7 @@ function CustomerService(customerStore) {
     }).then(function (parsed) {
       return customerStore.saveCustomer(parsed).then(function (c) {
         return builder.create('boolean').text(c);
-      }).catch(function (e) {
-        console.error(e);
       });
-    }).catch(function (e) {
-      console.error(e);
     });
   };
 }
