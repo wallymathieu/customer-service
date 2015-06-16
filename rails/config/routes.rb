@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  get 'CustomerService.svc/GetAllCustomers', controller: 'customer_service', action: 'get_all_customers'
+  post 'CustomerService.svc/SaveCustomer', controller: 'customer_service', action: 'save_customer'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
