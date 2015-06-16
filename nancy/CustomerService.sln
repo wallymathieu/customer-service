@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerService", "CustomerService\CustomerService.csproj", "{83DE76D9-29E8-406E-B3E2-1FB1E2951E52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{62DCB58C-3DC5-4E2B-B9D5-44348A2198EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62DCB58C-3DC5-4E2B-B9D5-44348A2198EA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{62DCB58C-3DC5-4E2B-B9D5-44348A2198EA}.Debug|x86.Build.0 = Debug|Any CPU
+		{62DCB58C-3DC5-4E2B-B9D5-44348A2198EA}.Release|x86.ActiveCfg = Release|Any CPU
+		{62DCB58C-3DC5-4E2B-B9D5-44348A2198EA}.Release|x86.Build.0 = Release|Any CPU
+		{83DE76D9-29E8-406E-B3E2-1FB1E2951E52}.Debug|x86.ActiveCfg = Debug|x86
+		{83DE76D9-29E8-406E-B3E2-1FB1E2951E52}.Debug|x86.Build.0 = Debug|x86
+		{83DE76D9-29E8-406E-B3E2-1FB1E2951E52}.Release|x86.ActiveCfg = Release|x86
+		{83DE76D9-29E8-406E-B3E2-1FB1E2951E52}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+EndGlobal
