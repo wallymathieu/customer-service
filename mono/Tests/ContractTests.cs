@@ -16,7 +16,7 @@ namespace Tests
         private CustomerServiceFake svc;
 
         [SetUp]
-        public void Init()
+        public void BeforeEachTest()
         {
             svc = new CustomerServiceFake();
             adapter = new CustomerServiceHttpAdapter(new Serializer(), svc);
