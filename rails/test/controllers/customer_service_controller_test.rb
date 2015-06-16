@@ -31,12 +31,10 @@ $single_customer = <<-END
 END
 
 class CustomerServiceControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
   test "should get all customer" do
     get :get_all_customers, :format => "xml"
     assert_response :success
+    puts response.body
     assert_equal( $get_all_customers, response.body )
     #assert_not_nil assigns(:array_of_customers)
   end
