@@ -1,10 +1,10 @@
 class CustomerServiceController < ApplicationController
 
   def get_all_customers
-    array_of_customer = ArrayOfCustomer.new(Customer.all)
+    @array_of_customer = Customer.all
     respond_to do |format|
-      format.json { render json: array_of_customer }
-      format.xml { render xml: array_of_customer }
+      format.json { render json: @array_of_customer }
+      format.xml 
     end
   end
 

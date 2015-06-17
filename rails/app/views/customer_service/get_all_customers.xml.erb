@@ -1,0 +1,8 @@
+<ArrayOfCustomer 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    xmlns="http://schemas.datacontract.org/2004/07/Customers" >
+<% @array_of_customer.each do |customer| %>
+    <%= render customer %>
+<% end %>
+</ArrayOfCustomer>
