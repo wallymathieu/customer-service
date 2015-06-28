@@ -2,6 +2,10 @@
 using Nancy;
 using Nancy.TinyIoc;
 using Nancy.Bootstrapper;
+using Nancy.ViewEngines;
+using System.Collections.Generic;
+using Veil.Parser;
+using Veil.Handlebars;
 
 namespace Customers
 {
@@ -38,6 +42,22 @@ namespace Customers
 
             // No registrations should be performed in here, however you may
             // resolve things that are needed during request startup.
+        }
+
+        protected override NancyInternalConfiguration InternalConfiguration
+        {
+            get
+            {
+                return NancyInternalConfiguration.WithOverrides(c => c.ViewLocationProvider = typeof(ResourceViewLocationProvider));
+            }
+        }
+
+        protected override IEnumerable<Type> ViewEngines
+        {
+            get
+            {
+                return new[] { typeof(Nancy.ViewEngines.Veil.VeilViewEngine) };
+            }
         }
     }
 }

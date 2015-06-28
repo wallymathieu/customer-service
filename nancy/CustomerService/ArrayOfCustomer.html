@@ -1,8 +1,27 @@
-﻿
-<html>
- <head>
-     <title></title>
- </head>
- <body>
- </body>
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Array of customers</title>
+</head>
+<body>
+    <h1>Array of customers</h1>
+    <table class="customers">
+        <thead>
+        <tr>
+            <th>FirstName</th>
+            <th>LastName</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each Customer}}
+            <tr>
+            <td>{{FirstName}}</td>
+            <td>{{LastName}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</body>
 </html>
