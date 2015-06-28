@@ -15,8 +15,16 @@ namespace Customers
         private static XmlSerializer XmlSerializerForType(Type t)
         {
             return typeof(Serializer).Assembly.Equals(t.Assembly)
-                ? new XmlSerializer(t, ns) 
+                ? new XmlSerializer(t, null,null,GetRootNs(t),ns) 
                 : new XmlSerializer(t);
+        }
+
+        private static XmlRootAttribute GetRootNs(Type t)
+        {
+            XmlRootAttribute rootNs =  new XmlRootAttribute();
+            rootNs.ElementName = t.Name;
+            rootNs.IsNullable = true;
+            return rootNs;
         }
 
         public byte[] Serialize(object o)

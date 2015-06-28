@@ -52,6 +52,7 @@
     <Compile Include="HttpWrappers\HttpRequestFake.cs" />
     <Compile Include="HttpWrappers\HttpResponseFake.cs" />
     <Compile Include="CustomerServiceFake.cs" />
+    <Compile Include="ParseXmlFromRails.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CustomerService\CustomerService.csproj">

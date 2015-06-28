@@ -29,12 +29,20 @@ namespace Customers
 
         public void ReadXml(XmlReader reader)
         {
-            _Value = new Uri(reader.ReadElementContentAsString());
+            var value = reader.ReadElementContentAsString();
+            _Value = string.IsNullOrEmpty(value) ? null: new Uri(value);
         }
 
         public void WriteXml(XmlWriter writer)
         {
-            writer.WriteValue(_Value.ToString());
+            if (_Value != null)
+            {
+                writer.WriteValue(_Value.ToString());
+            }
+            else
+            {
+                writer.WriteAttributeString("nil", "xsi", "true");
+            }
         }
     }
 }
