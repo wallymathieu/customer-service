@@ -5,13 +5,13 @@ $get_all_customers = <<-END
 <ArrayOfCustomer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.datacontract.org/2004/07/Customers">
   <Customer>
     <AccountNumber>1</AccountNumber>
-    <AddressCity xsi:nil="true" />
-    <AddressCountry xsi:nil="true" />
-    <AddressStreet xsi:nil="true" />
+    <AddressCity nil="true"/>
+    <AddressCountry nil="true"/>
+    <AddressStreet nil="true"/>
     <FirstName>Oskar</FirstName>
     <Gender>Male</Gender>
     <LastName>Gewalli</LastName>
-    <PictureUri xsi:nil="true" />
+    <PictureUri nil="true"/>
   </Customer>
 </ArrayOfCustomer>
 END
