@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{83DE76D9-29E8-406E-B3E2-1FB1E2951E52}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>CustomerService</RootNamespace>
+    <RootNamespace>Customers</RootNamespace>
     <AssemblyName>CustomerService</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
@@ -48,6 +48,10 @@
     <Compile Include="Api\CustomerGender.cs" />
     <Compile Include="Api\XmlUri.cs" />
     <Compile Include="Api\Serializer.cs" />
+    <Compile Include="CustomerService.cs" />
+    <Compile Include="ICustomerService.cs" />
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="IndexModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
