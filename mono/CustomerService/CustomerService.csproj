@@ -98,5 +98,7 @@
     </VisualStudio>
   </ProjectExtensions>
   <ItemGroup />
+  <!--
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v14.0\WebApplications\Microsoft.WebApplication.targets" />
+-->
 </Project>
