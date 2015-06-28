@@ -20,7 +20,7 @@ namespace Tests
         {
             svc = new CustomerServiceFake();
             bootstrapper = new TestBootstrapper(svc);
-            browser = new Browser(bootstrapper);
+            browser = new Browser(bootstrapper, defaults: to => to.Accept("application/xml"));
         }
 
         [Test]
@@ -38,6 +38,14 @@ namespace Tests
         [Test]
         public void Should_GetAllCustomers()
         {
+            // Given
+            svc.AllCustomers.Add(new Customer
+                { 
+                    AccountNumber = 1, 
+                    FirstName = "Oskar", 
+                    LastName = "Gewalli" 
+                });
+            
             // When
             var response = browser.Get("/CustomerService.svc/GetAllCustomers", (with) => {
                 with.HttpRequest();
@@ -64,12 +72,15 @@ namespace Tests
         [Test]
         public void SaveCustomer()
         {
+            // Given
             svc.AllCustomers.Add(new Customer
                 { 
                     AccountNumber = 1, 
                     FirstName = "Oskar", 
                     LastName = "Gewalli" 
                 });
+
+            // When
             var response = browser.Post("/CustomerService.svc/SaveCustomer", (with) => {
                 with.HttpRequest();
                 with.XMLBody(new Customer
@@ -79,6 +90,8 @@ namespace Tests
                         LastName = "Gewalli" 
                     });
             });
+
+            // Then
             response.BodyAsXml().Should().BeEquivalentTo(XDocument.Parse(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <boolean>true</boolean>"));
         }

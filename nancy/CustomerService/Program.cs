@@ -1,5 +1,6 @@
 ﻿using System;
 using Nancy.Hosting.Self;
+using Nancy;
 
 namespace Customers
 {
@@ -12,6 +13,7 @@ namespace Customers
                     AllowChunkedEncoding = true,
                     UrlReservations = { CreateAutomatically = true }
                 };
+            StaticConfiguration.DisableErrorTraces = false;
             using (var host = new NancyHost(conf, new Uri("http://localhost:8080")))
             {
                 Console.WriteLine("Started");

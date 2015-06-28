@@ -56,9 +56,16 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Index.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Api\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ArrayOfCustomer.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>
