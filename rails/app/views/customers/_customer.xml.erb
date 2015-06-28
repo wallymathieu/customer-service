@@ -1,1 +1,10 @@
-<%= raw(customer.to_xml) %>
+<Customer>
+  <%= element('AccountNumber', customer.account_number) %>
+  <%= element('AddressCity', customer.address_city) %>
+  <%= element('AddressCountry', customer.address_country) %>
+  <%= element('AddressStreet', customer.address_street) %>
+  <%= element('FirstName', customer.first_name) %>
+  <%= element('Gender', customer.gender) %>
+  <%= element('LastName', customer.last_name) %>
+  <%= element('PictureUri', customer.picture_uri) %>
+</Customer>
