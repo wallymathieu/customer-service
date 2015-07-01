@@ -1,10 +1,15 @@
 class Customer < ActiveRecord::Base
-  attr_writer(:account_number,
-      :address_city,
-      :address_country,
-      :address_street,
-      :first_name,
-      :gender,
-      :last_name,
-      :picture_uri)
+  
+  def accept_changes(hash)
+    attributes.select do |key, value|
+      key != :account_number
+    end.map do |key, value|
+      key
+    end.each do |attribute|
+      key = attribute.to_s
+      if hash.has_key?(key)
+        send("#{key}=", hash[key])
+      end
+    end
+  end
 end

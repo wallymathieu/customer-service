@@ -34,19 +34,35 @@ $single_customer = <<-END
 END
 
 class CustomerServiceControllerTest < ActionController::TestCase
+
   test "should get all customer" do
     get :get_all_customers, :format => "xml"
     assert_response :success
-    #puts response.body
     assert_equal( $get_all_customers, response.body )
-    #assert_not_nil assigns(:array_of_customers)
   end
 
   test "should be able to save customer" do
-    post :save_customer, $single_customer, :format => "xml"
+    customer = {
+      "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", 
+      "xmlns:xsd"=>"http://www.w3.org/2001/XMLSchema", 
+      "xmlns"=>"http://schemas.datacontract.org/2004/07/Customers", 
+      "AccountNumber"=>"1", 
+      "AddressCity"=>"Luleaa", 
+      "AddressCountry"=>"Sweden", 
+      "AddressStreet"=>{"xsi:nil"=>"true"}, 
+      "FirstName"=>"Oskar", 
+      "Gender"=>"Male", 
+      "LastName"=>"Gewalli", 
+      "PictureUri"=>{"xsi:nil"=>"true"}
+    }
+    post :save_customer, $single_customer, { :Customer => customer,
+      'CONTENT_TYPE' => 'application/xml', 
+      :format => "xml"
+    }
     assert_response :success
-    # response.body
-    #assert_not_nil assigns(:success)
+    oskar = Customer.find_by(account_number: 1)
+    assert_equal( 'Luleaa', oskar.address_city )
+    assert_equal( 'Sweden', oskar.address_country )
+    assert_equal( nil, oskar.address_street )
   end
-
 end
