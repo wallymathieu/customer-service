@@ -17,32 +17,35 @@ module Serializer =
     let nssExceptDefault = 
         ("xmlns:xsi=\""+XNamespace.xsi+"\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"").Split([|' '|])
             |> Array.map parseToNamespaces |> Array.toList
-    let ns =
+    let defaultNamespace =
          XNamespace.create( "http://schemas.datacontract.org/2004/07/Customers" )
     
+    /// XName with default namespace
+    let XNameNs = XName.ns defaultNamespace 
+
     let valuesXml (c:Customer) =
-        [XElem.value (XName.ns ns "AccountNumber") c.AccountNumber ;
-         XElem.value (XName.ns ns "AddressCity") c.AddressCity ;
-         XElem.value (XName.ns ns "AddressCountry") c.AddressCountry ;
-         XElem.value (XName.ns ns "AddressStreet") c.AddressStreet ;
-         XElem.value (XName.ns ns "FirstName") c.FirstName ;
-         XElem.value (XName.ns ns "Gender") c.Gender ;
-         XElem.value (XName.ns ns "LastName") c.LastName ;
-         XElem.value (XName.ns ns "PictureUri") c.PictureUri ;
+        [XElem.value (XNameNs "AccountNumber") c.AccountNumber ;
+         XElem.value (XNameNs "AddressCity") c.AddressCity ;
+         XElem.value (XNameNs "AddressCountry") c.AddressCountry ;
+         XElem.value (XNameNs "AddressStreet") c.AddressStreet ;
+         XElem.value (XNameNs "FirstName") c.FirstName ;
+         XElem.value (XNameNs "Gender") c.Gender ;
+         XElem.value (XNameNs "LastName") c.LastName ;
+         XElem.value (XNameNs "PictureUri") c.PictureUri ;
         ]
 
     let toCustomerXml c =
-        XElem.create (Namespaced(ns,"Customer")) (valuesXml c)
+        XElem.create (XNameNs "Customer") (valuesXml c)
 
     let fromCustomerXml (xml) =
-        { AccountNumber= XElem.valueOf xml (XName.ns ns "AccountNumber") |> Int32.Parse;
-          AddressCity= XElem.valueOf xml (XName.ns ns "AddressCity") ;
-          AddressCountry=XElem.valueOf xml (XName.ns ns "AddressCountry");
-          AddressStreet=XElem.valueOf xml (XName.ns ns "AddressStreet");
-          FirstName=XElem.valueOf xml (XName.ns ns "FirstName");
-          Gender = XElem.valueOf xml (XName.ns ns "Gender") |> Enum.parse;
-          LastName = XElem.valueOf xml (XName.ns ns "LastName") ;
-          PictureUri = XElem.valueOf xml (XName.ns ns "PictureUri") |> Url.tryParse
+        { AccountNumber= XElem.valueOf xml (XNameNs "AccountNumber") |> Int32.Parse;
+          AddressCity= XElem.valueOf xml (XNameNs "AddressCity") ;
+          AddressCountry=XElem.valueOf xml (XNameNs "AddressCountry");
+          AddressStreet=XElem.valueOf xml (XNameNs "AddressStreet");
+          FirstName=XElem.valueOf xml (XNameNs "FirstName");
+          Gender = XElem.valueOf xml (XNameNs "Gender") |> Enum.parse;
+          LastName = XElem.valueOf xml (XNameNs "LastName") ;
+          PictureUri = XElem.valueOf xml (XNameNs "PictureUri") |> Url.tryParse
         }
 
     let fromXml xml =
@@ -54,7 +57,7 @@ module Serializer =
 
     let toCustomerArrayXml l=
         let nss = nssExceptDefault |> List.map box 
-        let xdoc = XDoc.create([ XElem.create (XName.Namespaced(ns, "ArrayOfCustomer")) ( nss |> List.append([toXml l])) ])
+        let xdoc = XDoc.create([ XElem.create (XNameNs "ArrayOfCustomer") ( nss |> List.append([toXml l])) ])
         xdoc
 
     let serialize o =
