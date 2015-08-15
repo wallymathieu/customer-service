@@ -1,3 +1,7 @@
 FSharp.Core
 FsPickler
 Suave
+
+File: Enum.fs Perch
+File: Option.fs Perch
+File: Xml.fs Perch

@@ -1,4 +1,4 @@
-﻿namespace Customers
+﻿namespace Perch
 open System
     module Enum=
         let tryParse s :'a option when 'a:enum<'b> =

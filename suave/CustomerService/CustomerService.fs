@@ -7,8 +7,8 @@ type CustomerService () =
     let mapToCustomer (columns: string list)=
          {Customer.Empty with 
             AccountNumber = columns |> List.head |> Int32.Parse ; 
-            //FirstName = List.item 1 columns; 
-            //LastName = List.item 2 columns;
+            FirstName = List.nth columns 1; 
+            LastName = List.nth columns 2;
          }
 
     let cs = """1,Oskar,Gewalli,

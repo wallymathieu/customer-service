@@ -50,6 +50,18 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
+    <Compile Include="..\paket-files\wallymathieu\Perch\lib\Enum.fs">
+      <Paket>True</Paket>
+      <Link>Perch/Enum.fs</Link>
+    </Compile>
+    <Compile Include="..\paket-files\wallymathieu\Perch\lib\Option.fs">
+      <Paket>True</Paket>
+      <Link>Perch/Option.fs</Link>
+    </Compile>
+    <Compile Include="..\paket-files\wallymathieu\Perch\lib\Xml.fs">
+      <Paket>True</Paket>
+      <Link>Perch/Xml.fs</Link>
+    </Compile>
     <Content Include="app.config" />
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Models.fs" />
