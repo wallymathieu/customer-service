@@ -54,8 +54,8 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Models.fs" />
     <Compile Include="Api.fs" />
-    <Compile Include="XmlTypes.fs" />
     <Compile Include="Enum.fs" />
+    <Compile Include="Option.fs" />
     <Compile Include="Xml.fs" />
     <Compile Include="Serializer.fsi" />
     <Compile Include="Serializer.fs" />

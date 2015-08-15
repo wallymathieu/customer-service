@@ -34,11 +34,16 @@ type XName=
     | Namespaced of Namespace:XNamespace * Name:string
     //| Other of A
     with
+        /// get XName.Namespaced
+        static member ns ns' name=
+            XName.Namespaced(ns', name)
+        /// get System.Xml.Linq.XName from XName
         static member get name=
             match name with
                 | Simple n -> XName.Get(n)
                 | Namespaced(ns, n) ->XName.Get(localName=n, namespaceName=ns.NamespaceName)
                 //| Other({ Name = n }) -> XName.Get(n)
+        /// nil attribute name
         static member nil=
                XName.Namespaced (XNamespace.create XNamespace.xsi, "nil")
 
@@ -54,10 +59,10 @@ module XElem=
         node.Name
 
     let create name content =
-        XElement(XName.get name, content :> obj)
+        XElement(XName.get name, box content)
 
     let elements (node : XElement)=
-        node.Elements()    
+        node.Elements()
 
     let valueOf (node: XElement) name=
         let el = node.Element(XName.get name)
@@ -68,9 +73,19 @@ module XElem=
             | None -> el.Value
             | Some v -> if v.Value = "true" then null else el.Value
 
+    let value name (value: obj)=
+        let content = 
+            match value with
+                | null -> XAttr.nil :> obj
+                | Option.UnionCase <@ None @> [] -> box XAttr.nil
+                | Option.UnionCase <@ Some @> [v] -> box( v.ToString() )
+                | _ as v -> box( v.ToString() )
+        XElement(XName.get name, content)
+
+
 module XDoc=
     let create content =
-        XDocument(content |> Seq.map (fun e->e :> obj))    
+        XDocument(content |> Seq.map box)   
     let root (node : XDocument)=
         node.Root
 
@@ -79,23 +94,5 @@ module Xml=
     let parse input=
         XDocument.Parse(input)
 
-    let prop name value=
-        let x = XElement(XName.get name)
-        x.Value <- value.ToString()
-        x
 
-    let nprop name value=
-        let content = 
-            if value = null then 
-                XAttr.nil :> obj
-            else 
-                value.ToString() :> obj
-        XElement(XName.get name, content)
-        
 
-    let oprop name value=
-        let content = 
-            match value with
-                | Option.None -> XAttr.nil :> obj
-                | Some o -> o.ToString() :> obj
-        XElement(XName.get name, content)

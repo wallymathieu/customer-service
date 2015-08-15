@@ -5,8 +5,7 @@ open System.Text
 open System.Text.RegularExpressions
 
 module Serializer = 
-    let ns = "http://schemas.datacontract.org/2004/07/Customers"
-    let parseToNs str=
+    let parseToNamespaces str=
          let m = Regex.Match(str,@"xmlns\:?(\w+)?=""([^""]*)""")
          let g = m.Groups;
          let url= g.[2].Value
@@ -14,41 +13,36 @@ module Serializer =
          match nsName with
             | Some name -> XNamespace.createA name url
             | None -> XNamespace.createADefault url
-    let fullNs = 
-        ("xmlns:xsi=\""+XNamespace.xsi+"\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"http://schemas.datacontract.org/2004/07/Customers\"").Split([|' '|])
-            |> Array.map parseToNs |> Array.toList
-    let nssExceptDefault =
-        fullNs |> List.filter ( not << XNamespace.isADefault )
-    let nsDefault =
-        let ns' = fullNs 
-                  |> List.find XNamespace.isADefault
-        ns' |> (fun ns-> XNamespace.create( ns.Value ))
-    
-    let header = @"<?xml version=""1.0"" encoding=""utf-8""?>"
+
+    let nssExceptDefault = 
+        ("xmlns:xsi=\""+XNamespace.xsi+"\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"").Split([|' '|])
+            |> Array.map parseToNamespaces |> Array.toList
+    let ns =
+         XNamespace.create( "http://schemas.datacontract.org/2004/07/Customers" )
     
     let valuesXml (c:Customer) =
-        [Xml.prop (XName.Namespaced(nsDefault,"AccountNumber")) c.AccountNumber ;
-         Xml.nprop (XName.Namespaced(nsDefault,"AddressCity")) c.AddressCity ;
-         Xml.nprop (XName.Namespaced(nsDefault,"AddressCountry")) c.AddressCountry ;
-         Xml.nprop (XName.Namespaced(nsDefault,"AddressStreet")) c.AddressStreet ;
-         Xml.nprop (XName.Namespaced(nsDefault,"FirstName")) c.FirstName ;
-         Xml.prop (XName.Namespaced(nsDefault,"Gender")) c.Gender ;
-         Xml.nprop (XName.Namespaced(nsDefault,"LastName")) c.LastName ;
-         Xml.oprop (XName.Namespaced(nsDefault,"PictureUri")) c.PictureUri ;
+        [XElem.value (XName.ns ns "AccountNumber") c.AccountNumber ;
+         XElem.value (XName.ns ns "AddressCity") c.AddressCity ;
+         XElem.value (XName.ns ns "AddressCountry") c.AddressCountry ;
+         XElem.value (XName.ns ns "AddressStreet") c.AddressStreet ;
+         XElem.value (XName.ns ns "FirstName") c.FirstName ;
+         XElem.value (XName.ns ns "Gender") c.Gender ;
+         XElem.value (XName.ns ns "LastName") c.LastName ;
+         XElem.value (XName.ns ns "PictureUri") c.PictureUri ;
         ]
 
     let toCustomerXml c =
-        XElem.create (Namespaced(nsDefault,"Customer")) (valuesXml c)
+        XElem.create (Namespaced(ns,"Customer")) (valuesXml c)
 
     let fromCustomerXml (xml) =
-        { AccountNumber= XElem.valueOf xml (XName.Namespaced(nsDefault,"AccountNumber")) |> Int32.Parse;
-          AddressCity= XElem.valueOf xml (XName.Namespaced(nsDefault,"AddressCity")) ;
-          AddressCountry=XElem.valueOf xml (XName.Namespaced(nsDefault,"AddressCountry"));
-          AddressStreet=XElem.valueOf xml (XName.Namespaced(nsDefault,"AddressStreet"));
-          FirstName=XElem.valueOf xml (XName.Namespaced(nsDefault,"FirstName"));
-          Gender = XElem.valueOf xml (XName.Namespaced(nsDefault,"Gender")) |> Enum.parse;
-          LastName = XElem.valueOf xml (XName.Namespaced(nsDefault,"LastName")) ;
-          PictureUri = XElem.valueOf xml (XName.Namespaced(nsDefault,"PictureUri") ) |> Url.tryParse
+        { AccountNumber= XElem.valueOf xml (XName.ns ns "AccountNumber") |> Int32.Parse;
+          AddressCity= XElem.valueOf xml (XName.ns ns "AddressCity") ;
+          AddressCountry=XElem.valueOf xml (XName.ns ns "AddressCountry");
+          AddressStreet=XElem.valueOf xml (XName.ns ns "AddressStreet");
+          FirstName=XElem.valueOf xml (XName.ns ns "FirstName");
+          Gender = XElem.valueOf xml (XName.ns ns "Gender") |> Enum.parse;
+          LastName = XElem.valueOf xml (XName.ns ns "LastName") ;
+          PictureUri = XElem.valueOf xml (XName.ns ns "PictureUri") |> Url.tryParse
         }
 
     let fromXml xml =
@@ -60,7 +54,7 @@ module Serializer =
 
     let toCustomerArrayXml l=
         let nss = nssExceptDefault |> List.map box 
-        let xdoc = XDoc.create([ XElem.create (XName.Namespaced(nsDefault, "ArrayOfCustomer")) ( nss |> List.append([toXml l])) ])
+        let xdoc = XDoc.create([ XElem.create (XName.Namespaced(ns, "ArrayOfCustomer")) ( nss |> List.append([toXml l])) ])
         xdoc
 
     let serialize o =
