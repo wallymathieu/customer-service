@@ -57,8 +57,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\paket-files\wallymathieu\Perch\lib\Dict.fs">
+      <Paket>True</Paket>
+      <Link>Perch\Dict.fs</Link>
+    </Compile>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Dict.fs" />
     <Compile Include="CustomerServiceFake.fsi" />
     <Compile Include="CustomerServiceFake.fs" />
     <Compile Include="ContractTests.fs" />
