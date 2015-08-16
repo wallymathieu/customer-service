@@ -15,6 +15,7 @@ NUGET
 GITHUB
   remote: wallymathieu/Perch
   specs:
+    lib/Dict.fs (485c8ddebf6080812ad47df402cd27e87cacff9c)
     lib/Enum.fs (485c8ddebf6080812ad47df402cd27e87cacff9c)
     lib/Option.fs (485c8ddebf6080812ad47df402cd27e87cacff9c)
     lib/Xml.fs (485c8ddebf6080812ad47df402cd27e87cacff9c)

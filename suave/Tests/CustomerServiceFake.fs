@@ -1,7 +1,7 @@
 ﻿namespace Tests
 open Customers
 open System.Reflection
-
+open Perch
 
     type CustomerServiceFake (allCustomers)=
         let mutable allCustomers = allCustomers
