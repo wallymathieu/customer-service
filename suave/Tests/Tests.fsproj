@@ -193,10 +193,12 @@
   <ItemGroup>
     <Reference Include="FsUnit.CustomMatchers">
       <HintPath>..\packages\FsUnit\lib\FsUnit.CustomMatchers.dll</HintPath>
+      <Private>True</Private>
       <Paket>True</Paket>
     </Reference>
     <Reference Include="FsUnit.NUnit">
       <HintPath>..\packages\FsUnit\lib\FsUnit.NUnit.dll</HintPath>
+      <Private>True</Private>
       <Paket>True</Paket>
     </Reference>
   </ItemGroup>

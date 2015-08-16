@@ -6,7 +6,7 @@ nuget FSharp.Core
 nuget FsPickler framework: >= net45
 nuget FsUnit
 nuget NUnit
-nuget NUnitTestAdapter
+nuget NUnit.Runners
 nuget Suave framework: >= net45
 
 github wallymathieu/Perch lib/Enum.fs
