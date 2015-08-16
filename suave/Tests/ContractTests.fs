@@ -12,8 +12,7 @@ open System.Xml.Linq
     type ``ContractTests``() =
         let customer = {Customer.Empty with AccountNumber = 1; FirstName = "Oskar"; LastName = "Gewalli" }
         let ns =  "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"http://schemas.datacontract.org/2004/07/Customers\""
-        let serializedCustomers = String.Format( @"<?xml version=""1.0"" encoding=""utf-8""?>
-<ArrayOfCustomer {0}>
+        let serializedCustomers = String.Format( @"<ArrayOfCustomer {0}>
   <Customer>
     <AccountNumber>1</AccountNumber>
     <AddressCity xsi:nil=""true"" />
@@ -43,6 +42,5 @@ open System.Xml.Linq
          ``save customer`` ()=
             let svc = CustomerServiceFake([|customer|]) in
                 let bytes = serialized customer in
-                    should_be_xml_equivalent @"<?xml version=""1.0"" encoding=""utf-8""?>
-                            <boolean>true</boolean>" (HttpAdapter.SaveCustomer svc bytes)
+                    should_be_xml_equivalent @"<boolean>true</boolean>" (HttpAdapter.SaveCustomer svc bytes)
 
