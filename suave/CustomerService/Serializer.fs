@@ -38,15 +38,18 @@ module Serializer =
     let toCustomerXml c =
         XElem.create (XNameNs "Customer") (valuesXml c)
 
+    let valueOf xml name=
+        (XElem.valueOf (XElem.withName xml name))
+
     let fromCustomerXml (xml) =
-        { AccountNumber= XElem.valueOf xml (XNameNs "AccountNumber") |> Int32.Parse;
-          AddressCity= XElem.valueOf xml (XNameNs "AddressCity") ;
-          AddressCountry=XElem.valueOf xml (XNameNs "AddressCountry");
-          AddressStreet=XElem.valueOf xml (XNameNs "AddressStreet");
-          FirstName=XElem.valueOf xml (XNameNs "FirstName");
-          Gender = XElem.valueOf xml (XNameNs "Gender") |> Enum.parse;
-          LastName = XElem.valueOf xml (XNameNs "LastName") ;
-          PictureUri = XElem.valueOf xml (XNameNs "PictureUri") |> Url.tryParse
+        { AccountNumber= valueOf xml (XNameNs "AccountNumber") |> Int32.Parse;
+          AddressCity= valueOf xml (XNameNs "AddressCity") ;
+          AddressCountry= valueOf xml (XNameNs "AddressCountry");
+          AddressStreet= valueOf xml (XNameNs "AddressStreet");
+          FirstName= valueOf xml (XNameNs "FirstName");
+          Gender = valueOf xml (XNameNs "Gender") |> Enum.parse;
+          LastName = valueOf xml (XNameNs "LastName") ;
+          PictureUri = valueOf xml (XNameNs "PictureUri") |> Url.tryParse
         }
 
     let fromXml xml =

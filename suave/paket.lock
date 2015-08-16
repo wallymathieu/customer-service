@@ -1,19 +1,20 @@
 NUGET
   remote: https://www.nuget.org/api/v2
   specs:
-    FluentAssertions (3.5.0) - framework: >= net452
-    FSharp.Core (3.1.2.5) - framework: >= net45
-    FsPickler (1.2.5) - framework: >= net45
-    FsUnit (1.3.1.0) - framework: >= net452
+    FAKE (4.1.3)
+    FluentAssertions (3.5.0)
+    FSharp.Core (4.0.0.1)
+    FsPickler (1.3.2) - framework: >= net45
+    FsUnit (1.3.1.0)
       NUnit (2.6.4)
-    NUnit (2.6.4) - framework: >= net452
+    NUnit (2.6.4)
     NUnitTestAdapter (2.0.0)
-    Suave (0.30.0) - framework: >= net45
-      FSharp.Core (>= 3.1.2.1)
+    Suave (0.31.0) - framework: >= net45
+      FSharp.Core (>= 4.0.0.1)
       FsPickler (>= 1.2.5)
 GITHUB
   remote: wallymathieu/Perch
   specs:
-    lib/Enum.fs (7bcfacc00564c2ce6402ad065bfb7c26fd830675)
-    lib/Option.fs (7bcfacc00564c2ce6402ad065bfb7c26fd830675)
-    lib/Xml.fs (7bcfacc00564c2ce6402ad065bfb7c26fd830675)
+    lib/Enum.fs (485c8ddebf6080812ad47df402cd27e87cacff9c)
+    lib/Option.fs (485c8ddebf6080812ad47df402cd27e87cacff9c)
+    lib/Xml.fs (485c8ddebf6080812ad47df402cd27e87cacff9c)
