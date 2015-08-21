@@ -1,5 +1,6 @@
 FluentAssertions
 FsUnit
 NUnit
+FSharp.Data
 
 File: Hash.fs Perch
