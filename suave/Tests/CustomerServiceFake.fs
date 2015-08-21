@@ -5,14 +5,11 @@ open Perch
 
     type CustomerServiceFake (allCustomers)=
         let mutable allCustomers = allCustomers
-        let replace xs f sub = 
-          let processItem (found,list) x =
-            if found then (true,x::list) 
-            elif f x then (true,(sub x)::list) 
-            else (false,x::list)
-          let (found, list) = xs |> List.fold processItem (false,[])
-          if found then Some(List.rev list)
-          else None
+        let replace xs f = 
+            let processItem list x =
+                if f x |> Option.isSome then (f x |> Option.get)::list
+                else x::list
+            xs |> List.fold processItem []
 
         interface ICustomerService with
             member x.GetAllCustomers () =
@@ -31,11 +28,12 @@ open Perch
                         | CustomerInput.Multiple cs -> cs
 
                 if editedCustomers |> List.isEmpty |> not then
-                    let ids = Dict.fromSeq accNr editedCustomers
-                    let replaced = replace (allCustomers|> Array.toList) (fun c-> Dict.tryGet ids  (accNr(c)) |> Option.isSome ) (fun c-> Dict.get ids (accNr(c)))
-                    match replaced with
-                        | Option.None -> CustomerOutput.Success(false)
-                        | Option.Some cs -> allCustomers <-  cs |> List.toArray; CustomerOutput.Success(true)
+                    let ids = Hash.fromSeq accNr id editedCustomers
+                    let replaced = replace (allCustomers|> Array.toList) 
+                                    (fun c-> ids |> Hash.tryGet (accNr(c))) // what to replace
+                                    
+                    allCustomers <-  replaced |> List.toArray
+                    CustomerOutput.Success(true)
                 else
                     CustomerOutput.Success(false)
                 

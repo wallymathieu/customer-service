@@ -32,24 +32,24 @@ module Serializer =
          XElem.value (XNameNs "FirstName") c.FirstName ;
          XElem.value (XNameNs "Gender") c.Gender ;
          XElem.value (XNameNs "LastName") c.LastName ;
-         XElem.value (XNameNs "PictureUri") c.PictureUri ;
+         XElem.optionValue (XNameNs "PictureUri") c.PictureUri ;
         ]
 
     let toCustomerXml c =
         XElem.create (XNameNs "Customer") (valuesXml c)
 
-    let valueOf xml name=
-        (XElem.valueOf (XElem.withName xml name))
-
     let fromCustomerXml (xml) =
-        { AccountNumber= valueOf xml (XNameNs "AccountNumber") |> Int32.Parse;
-          AddressCity= valueOf xml (XNameNs "AddressCity") ;
-          AddressCountry= valueOf xml (XNameNs "AddressCountry");
-          AddressStreet= valueOf xml (XNameNs "AddressStreet");
-          FirstName= valueOf xml (XNameNs "FirstName");
-          Gender = valueOf xml (XNameNs "Gender") |> Enum.parse;
-          LastName = valueOf xml (XNameNs "LastName") ;
-          PictureUri = valueOf xml (XNameNs "PictureUri") |> Url.tryParse
+        let valueOf' name = 
+            XElem.valueOf (XElem.withName name xml)
+
+        { AccountNumber= valueOf' (XNameNs "AccountNumber") |> Int32.Parse;
+          AddressCity= valueOf' (XNameNs "AddressCity") ;
+          AddressCountry= valueOf' (XNameNs "AddressCountry");
+          AddressStreet= valueOf' (XNameNs "AddressStreet");
+          FirstName= valueOf' (XNameNs "FirstName");
+          Gender = valueOf' (XNameNs "Gender") |> Enum.parse;
+          LastName = valueOf' (XNameNs "LastName") ;
+          PictureUri = valueOf' (XNameNs "PictureUri") |> Url.tryParse
         }
 
     let fromXml xml =

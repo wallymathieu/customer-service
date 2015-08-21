@@ -10,6 +10,5 @@ nuget NUnit.Runners
 nuget Suave framework: >= net45
 
 github wallymathieu/Perch lib/Enum.fs
-github wallymathieu/Perch lib/Option.fs
 github wallymathieu/Perch lib/Xml.fs
-github wallymathieu/Perch lib/Dict.fs
+github wallymathieu/Perch lib/Hash.fs
