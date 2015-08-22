@@ -2,6 +2,7 @@
 using System;
 using Customers;
 using Microsoft.FSharp.Core;
+using OptionalUrl = Microsoft.FSharp.Core.FSharpOption<Customers.Url>;
 namespace BillingService.Tests
 {
 	[TestFixture]
@@ -15,7 +16,7 @@ namespace BillingService.Tests
 				lastName: "Last name", 
 				addressCity: "", addressCountry:"", addressStreet:"",
 				gender: CustomerGender.Female,
-				pictureUri: FSharpOption<Url>.Some(new Url("http://someurl.com/something?some=asd"))
+                pictureUri: OptionalUrl.Some(new Url("http://someurl.com/something?some=asd"))
 			);
 
 			var generate = new GenerateCustomerInvoice ();
@@ -30,7 +31,7 @@ namespace BillingService.Tests
 				lastName: "Last name", 
 				addressCity: "", addressCountry:"", addressStreet:"",
 				gender: CustomerGender.Female,
-				pictureUri: FSharpOption<Url>.None
+                pictureUri: OptionalUrl.None
 			);
 
 			var generate = new GenerateCustomerInvoice ();
