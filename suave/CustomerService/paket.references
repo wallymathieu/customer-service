@@ -1,6 +1,7 @@
 FSharp.Core
 FsPickler
 Suave
+FSharpx.Extras
 
 File: Enum.fs Perch
 File: Xml.fs Perch
