@@ -18,11 +18,14 @@ open Suave.Http.Applicatives
         let app : WebPart =
             choose 
                 [ GET >>= choose
-                    [ path "/CustomerService.svc/GetAllCustomers" >>= Writers.setMimeType "application/xml" >>= OK(HttpAdapter.GetAllCustomers(c))
+                    [ path "/CustomerService.svc/GetAllCustomers"
+                         >>= Writers.setMimeType "application/xml" 
+                         >>= OK(HttpAdapter.GetAllCustomers(c))
                       path "/" >>= OK HttpAdapter.index
                     ]
                   POST >>= choose
-                    [ path "/CustomerService.svc/SaveCustomer" >>= request (fun req -> OK(HttpAdapter.SaveCustomer c req.rawForm)) ]
+                    [ path "/CustomerService.svc/SaveCustomer" 
+                        >>= request (fun req -> OK(HttpAdapter.SaveCustomer c req.rawForm)) ]
                 ]
 
         [<EntryPoint>]
