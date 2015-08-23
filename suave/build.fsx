@@ -3,40 +3,38 @@
 
 open Fake
 let app     = "CustomerService"
-let appDir  = "./"+app+"/bin/Debug/"
-let testDir = "./Tests/bin/Debug/"
-
-let appReferences  = 
-    !! (app+"/*.fsproj")
-
-let testReferences = 
-    !! "Tests/*.fsproj"
 
 Target "build" (fun _ ->
-    MSBuildDebug appDir "Build" appReferences 
-        |> Log "LibBuild-Output: "
-)
-Target "build_test" (fun _ ->
-    MSBuildDebug testDir "Build" testReferences 
+    MSBuildDebug "" "Build" ["CustomerService.sln"] 
         |> Log "LibBuild-Output: "
 )
 
-Target "test" (fun _ ->  
-    !! (testDir + "/Tests*.dll")
+Target "test_customerservice" (fun _ ->  
+    !! (@"./Tests/bin/Debug/*Tests*.dll")
         |> NUnit (fun p -> 
             {p with
-                DisableShadowCopy = true; 
-                OutputFile = testDir + "TestResults.xml"})
+                DisableShadowCopy = false;
+            })
 )
+
+Target "test_billingservice" (fun _ ->  
+    !! (@"./BillingService.Tests/bin\Debug/*Tests*.dll")
+        |> NUnit (fun p -> 
+            {p with
+                DisableShadowCopy = false;
+            })
+)
+
 
 Target "install" DoNothing
 
-"build"
-    ==> "build_test"
+Target "test" DoNothing
 
-"build_test"
+"test_billingservice"
     ==> "test"
-
-
+    ==> "build"
+"test_customerservice" 
+    ==> "test"
+    ==> "build"
 
 RunTargetOrDefault "build"

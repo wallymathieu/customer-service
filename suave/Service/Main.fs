@@ -8,6 +8,10 @@ open Suave.Http.Redirection
 open Suave.Http.Files
 open Suave.Http.RequestErrors
 open Suave.Http.Applicatives
+#if COMPILED
+
+(* module BoilerPlateForForm =[<System.STAThread>] do () *)
+//    do System.Windows.Forms.Application.Run()
 
     module Main=
         let private c = new CustomerService()
@@ -25,5 +29,9 @@ open Suave.Http.Applicatives
         let main argv =
           startWebServer defaultConfig app
           0
+
+
+#endif
+
 
 

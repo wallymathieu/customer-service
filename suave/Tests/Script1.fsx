@@ -7,12 +7,11 @@
 #load "../CustomerService/Models.fs"
 #load "../CustomerService/Api.fs"
 #load "../paket-files/wallymathieu/Perch/lib/Enum.fs"
-#load "../paket-files/wallymathieu/Perch/lib/Option.fs"
 #load "../paket-files/wallymathieu/Perch/lib/Xml.fs"
 #load "../CustomerService/Serializer.fs"
 #load "../CustomerService/CustomerService.fs"
 #load "../CustomerService/httpAdapter.fs"
-#load "Dict.fs"
+#load "../paket-files/wallymathieu/Perch/lib/Hash.fs"
 #load "CustomerServiceFake.fs"
 open Customers
 open Tests
