@@ -1,0 +1,9 @@
+# A sample Gemfile
+source "https://rubygems.org"
+
+gem "sinatra"
+gem "minitest"
+gem "rack-test", require: "rack/test"
+gem "rack-parser", require: "rack/parser"
+gem "nori"
+gem "nokogiri"
