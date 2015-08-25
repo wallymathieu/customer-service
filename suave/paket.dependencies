@@ -12,4 +12,3 @@ nuget FSharpx.Extras
 
 github wallymathieu/Perch lib/Enum.fs
 github wallymathieu/Perch lib/Xml.fs
-github wallymathieu/Perch lib/Hash.fs

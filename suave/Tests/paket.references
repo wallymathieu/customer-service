@@ -1,5 +1,4 @@
 FluentAssertions
 FsUnit
 NUnit
-
-File: Hash.fs Perch
+FSharp.Core

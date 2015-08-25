@@ -1,7 +1,6 @@
 ﻿namespace Tests
 open Customers
 open System.Reflection
-open Perch
 
     type CustomerServiceFake (allCustomers)=
         let mutable allCustomers = allCustomers
@@ -28,9 +27,12 @@ open Perch
                         | CustomerInput.Multiple cs -> cs
 
                 if editedCustomers |> List.isEmpty |> not then
-                    let ids = Hash.fromSeq accNr id editedCustomers
+                    let ids = Map( editedCustomers
+                                |> List.map (fun c->(accNr c,c))
+                                )
+
                     let replaced = replace (allCustomers|> Array.toList) 
-                                    (fun c-> ids |> Hash.tryGet (accNr(c))) // what to replace
+                                    (fun c-> ids |> Map.tryFind (accNr(c))) // what to replace
                                     
                     allCustomers <-  replaced |> List.toArray
                     CustomerOutput.Success(true)

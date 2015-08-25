@@ -24,5 +24,4 @@ GITHUB
   remote: wallymathieu/Perch
   specs:
     lib/Enum.fs (460b603b8d1cc6225f0e1f83e154078c7f96d466)
-    lib/Hash.fs (460b603b8d1cc6225f0e1f83e154078c7f96d466)
     lib/Xml.fs (460b603b8d1cc6225f0e1f83e154078c7f96d466)
