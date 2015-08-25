@@ -3,7 +3,11 @@ require_relative 'customer_service'
 require_relative 'to_xml'
 require 'nori'
 dir = File.dirname(__FILE__)
-cs = CustomerService.new
+if ENV['RACK_ENV'] == 'test' 
+    cs = CustomerService.new
+else
+    cs = CustomerService.new
+end
 xml_parser = Nori.new(:strip_namespaces => true)
 require 'rack/parser'
 use Rack::Parser, :parsers => { 
