@@ -1,10 +1,9 @@
 $properties = 'AccountNumber AddressCity AddressCountry AddressStreet FirstName Gender LastName PictureUri'.split(' ')
+
 def uncapitalize val
     val[0, 1].downcase + val[1..-1]
 end
-def capitalize val
-    val[0, 1].upcase + val[1..-1]
-end
+
 def to_ruby_case val
     val.split(/([A-Z][a-z]*)/).reject(&:empty?).map( &method(:uncapitalize) ).join('_')
 end
