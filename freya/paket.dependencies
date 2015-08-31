@@ -1,0 +1,15 @@
+source https://www.nuget.org/api/v2/
+
+nuget FAKE
+nuget FluentAssertions
+nuget FSharp.Core
+nuget FsUnit
+nuget NUnit
+nuget NUnit.Runners
+nuget Freya
+nuget FSharpx.Extras
+nuget Microsoft.Owin.SelfHost
+
+github wallymathieu/Perch lib/Enum.fs
+github wallymathieu/Perch lib/Xml.fs
+github wallymathieu/Perch lib/Hash.fs
