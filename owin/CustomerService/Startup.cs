@@ -24,8 +24,10 @@ namespace Customers
         {
             app.Map("/index.html", b =>b.Run(Index));
 
-            app.Map("/CustomerService.svc/GetAllCustomers", b=> b.Run(GetAllCustomers));
-            app.Map("/CustomerService.svc/SaveCustomer", b => b.Run(SaveCustomer));
+            app.Map("/CustomerService.svc", b1=>{
+                b1.Map("/GetAllCustomers", b=> b.Run(GetAllCustomers));
+                b1.Map("/SaveCustomer", b => b.Run(SaveCustomer));
+            });
 
             app.Map("", b => b.Run(Index));
         }
