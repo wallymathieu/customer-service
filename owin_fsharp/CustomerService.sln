@@ -1,0 +1,176 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{A369A633-05F9-429F-BCDA-CFAA85A49BB8}"
+	ProjectSection(SolutionItems) = preProject
+		paket.dependencies = paket.dependencies
+	EndProjectSection
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "CustomerService", "CustomerService\CustomerService.fsproj", "{8303247C-D485-420A-AEE5-D4C7373D9A9E}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tests", "Tests\Tests.fsproj", "{6533E66C-DD2B-4D79-B6C7-B7D50178EDAF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D0BDFDBC-E7DD-4A0C-AE9D-8FA1C84F76F0}"
+	ProjectSection(SolutionItems) = preProject
+		build.fsx = build.fsx
+	EndProjectSection
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Service", "Service\Service.fsproj", "{4F6B33F7-7B0D-4C9D-A2BE-D1B4409A1ADF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8303247C-D485-420A-AEE5-D4C7373D9A9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8303247C-D485-420A-AEE5-D4C7373D9A9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8303247C-D485-420A-AEE5-D4C7373D9A9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8303247C-D485-420A-AEE5-D4C7373D9A9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6533E66C-DD2B-4D79-B6C7-B7D50178EDAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6533E66C-DD2B-4D79-B6C7-B7D50178EDAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6533E66C-DD2B-4D79-B6C7-B7D50178EDAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6533E66C-DD2B-4D79-B6C7-B7D50178EDAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F6B33F7-7B0D-4C9D-A2BE-D1B4409A1ADF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F6B33F7-7B0D-4C9D-A2BE-D1B4409A1ADF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F6B33F7-7B0D-4C9D-A2BE-D1B4409A1ADF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F6B33F7-7B0D-4C9D-A2BE-D1B4409A1ADF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.TextStylePolicy = $4
+		$1.inheritsSet = null
+		$1.scope = text/x-fsharp
+		$0.FSharpFormattingPolicy = $2
+		$2.DefaultFormat = $3
+		$3.IndentOnTryWith = False
+		$3.ReorderOpenDeclaration = False
+		$3.SpaceAfterComma = True
+		$3.SpaceAfterSemicolon = True
+		$3.SpaceAroundDelimiter = True
+		$3.SpaceBeforeArgument = True
+		$3.SpaceBeforeColon = True
+		$2.scope = text/x-fsharp
+		$4.FileWidth = 120
+		$4.inheritsSet = VisualStudio
+		$4.inheritsScope = text/plain
+		$4.scope = text/plain
+		$0.StandardHeader = $5
+		$5.Text = 
+		$5.IncludeInNewFiles = True
+		$0.NameConventionPolicy = $6
+		$6.Rules = $7
+		$7.NamingRule = $27
+		$8.Name = Namespaces
+		$8.AffectedEntity = Namespace
+		$8.VisibilityMask = VisibilityMask
+		$8.NamingStyle = PascalCase
+		$8.IncludeInstanceMembers = True
+		$8.IncludeStaticEntities = True
+		$9.Name = Types
+		$9.AffectedEntity = Class, Struct, Enum, Delegate
+		$9.VisibilityMask = Public
+		$9.NamingStyle = PascalCase
+		$9.IncludeInstanceMembers = True
+		$9.IncludeStaticEntities = True
+		$10.Name = Interfaces
+		$10.RequiredPrefixes = $11
+		$11.String = I
+		$10.AffectedEntity = Interface
+		$10.VisibilityMask = Public
+		$10.NamingStyle = PascalCase
+		$10.IncludeInstanceMembers = True
+		$10.IncludeStaticEntities = True
+		$12.Name = Attributes
+		$12.RequiredSuffixes = $13
+		$13.String = Attribute
+		$12.AffectedEntity = CustomAttributes
+		$12.VisibilityMask = Public
+		$12.NamingStyle = PascalCase
+		$12.IncludeInstanceMembers = True
+		$12.IncludeStaticEntities = True
+		$14.Name = Event Arguments
+		$14.RequiredSuffixes = $15
+		$15.String = EventArgs
+		$14.AffectedEntity = CustomEventArgs
+		$14.VisibilityMask = Public
+		$14.NamingStyle = PascalCase
+		$14.IncludeInstanceMembers = True
+		$14.IncludeStaticEntities = True
+		$16.Name = Exceptions
+		$16.RequiredSuffixes = $17
+		$17.String = Exception
+		$16.AffectedEntity = CustomExceptions
+		$16.VisibilityMask = VisibilityMask
+		$16.NamingStyle = PascalCase
+		$16.IncludeInstanceMembers = True
+		$16.IncludeStaticEntities = True
+		$18.Name = Methods
+		$18.AffectedEntity = Methods
+		$18.VisibilityMask = Protected, Public
+		$18.NamingStyle = PascalCase
+		$18.IncludeInstanceMembers = True
+		$18.IncludeStaticEntities = True
+		$19.Name = Static Readonly Fields
+		$19.AffectedEntity = ReadonlyField
+		$19.VisibilityMask = Protected, Public
+		$19.NamingStyle = PascalCase
+		$19.IncludeInstanceMembers = False
+		$19.IncludeStaticEntities = True
+		$20.Name = Fields
+		$20.AffectedEntity = Field
+		$20.VisibilityMask = Protected, Public
+		$20.NamingStyle = PascalCase
+		$20.IncludeInstanceMembers = True
+		$20.IncludeStaticEntities = True
+		$21.Name = ReadOnly Fields
+		$21.AffectedEntity = ReadonlyField
+		$21.VisibilityMask = Protected, Public
+		$21.NamingStyle = PascalCase
+		$21.IncludeInstanceMembers = True
+		$21.IncludeStaticEntities = False
+		$22.Name = Constant Fields
+		$22.AffectedEntity = ConstantField
+		$22.VisibilityMask = Protected, Public
+		$22.NamingStyle = PascalCase
+		$22.IncludeInstanceMembers = True
+		$22.IncludeStaticEntities = True
+		$23.Name = Properties
+		$23.AffectedEntity = Property
+		$23.VisibilityMask = Protected, Public
+		$23.NamingStyle = PascalCase
+		$23.IncludeInstanceMembers = True
+		$23.IncludeStaticEntities = True
+		$24.Name = Events
+		$24.AffectedEntity = Event
+		$24.VisibilityMask = Protected, Public
+		$24.NamingStyle = PascalCase
+		$24.IncludeInstanceMembers = True
+		$24.IncludeStaticEntities = True
+		$25.Name = Enum Members
+		$25.AffectedEntity = EnumMember
+		$25.VisibilityMask = VisibilityMask
+		$25.NamingStyle = PascalCase
+		$25.IncludeInstanceMembers = True
+		$25.IncludeStaticEntities = True
+		$26.Name = Parameters
+		$26.AffectedEntity = Parameter
+		$26.VisibilityMask = VisibilityMask
+		$26.NamingStyle = CamelCase
+		$26.IncludeInstanceMembers = True
+		$26.IncludeStaticEntities = True
+		$27.Name = Type Parameters
+		$27.RequiredPrefixes = $28
+		$28.String = T
+		$27.AffectedEntity = TypeParameter
+		$27.VisibilityMask = VisibilityMask
+		$27.NamingStyle = PascalCase
+		$27.IncludeInstanceMembers = True
+		$27.IncludeStaticEntities = True
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,10 @@
+FSharp.Core
+FSharpx.Extras
+
+Microsoft.Owin
+Microsoft.Owin.Host.HttpListener
+Microsoft.Owin.Hosting
+Owin
+
+File: Enum.fs Perch
+File: Xml.fs Perch

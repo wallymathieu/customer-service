@@ -1,0 +1,9 @@
+FluentAssertions
+FsUnit
+NUnit
+FSharp.Core
+
+Microsoft.Owin
+Microsoft.Owin.Hosting
+Microsoft.Owin.Testing
+Owin
