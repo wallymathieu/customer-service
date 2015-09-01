@@ -35,23 +35,26 @@ You can mock implementation of the api here:
 
 
     let Index(context: IOwinContext) : Task =
-            context.Response.ContentType <- "text/html; charset=utf-8";
-            //Console.WriteLine("Index");
-            context.Response.WriteAsync(indexHtml);
+            context.Response.ContentType <- "text/html; charset=utf-8"
+            //Console.WriteLine("Index")
+            context.Response.WriteAsync(indexHtml)
 
     let SaveCustomer (context: IOwinContext) : Task =
             if (context.Request.Method.Equals("POST")) then
-                context.Response.ContentType <- "application/xml";
+                context.Response.ContentType <- "application/xml"
                 let c = Serializer.deserialize(context.Request.Body);
-                context.Response.WriteAsync(Serializer.serialize(svc.SaveCustomers(c)));
+                context.Response.WriteAsync(Serializer.serialize(svc.SaveCustomers(c)))
             else
                 context.Response.StatusCode <- 404;
-                context.Response.WriteAsync("Not found");
+                context.Response.WriteAsync("Not found")
         
     let GetAllCustomers (context: IOwinContext) : Task = 
-        context.Response.ContentType <- "application/xml";
-        context.Response.WriteAsync(Serializer.serialize(svc.GetAllCustomers()));
+        context.Response.ContentType <- "application/xml"
+        context.Response.WriteAsync(Serializer.serialize(svc.GetAllCustomers()))
 
+    let DoesNotExist (context: IOwinContext) : Task =
+        context.Response.StatusCode <- 404;
+        context.Response.WriteAsync("Not found")
 
     member __.Configuration (app: IAppBuilder)=
         let matchIndex (ctx: IOwinContext)=
