@@ -4,4 +4,4 @@ open Owin;
 
 type HttpAdapter =
     new :ICustomerService -> HttpAdapter 
-    member configuration : IAppBuilder -> unit
+    member Configuration : IAppBuilder -> unit

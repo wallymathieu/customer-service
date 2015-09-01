@@ -45,7 +45,7 @@ open System.IO
             let svc = new CustomerServiceFake(c)
             TestServer.Create(fun b-> 
                 let a = new HttpAdapter(svc)
-                a.configuration(b)
+                a.Configuration(b)
                 )
  
         let GETXml (server: TestServer) (url:string)=

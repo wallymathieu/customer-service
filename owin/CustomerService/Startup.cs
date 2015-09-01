@@ -1,8 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
 using System.Threading.Tasks;
-using System;
-using System.IO;
 
 namespace Customers
 {
@@ -29,13 +27,13 @@ namespace Customers
                 b1.Map("/SaveCustomer", b => b.Run(SaveCustomer));
             });
 
-            app.Map("", b => b.Run(Index));
+            app.MapWhen(ctx=> ctx.Request.Path.Value.Equals("/"), b => b.Run(Index));
         }
 
         private Task Index(IOwinContext context)
         {
             context.Response.ContentType = "text/html; charset=utf-8";
-            Console.WriteLine("Index");
+            //Console.WriteLine("Index");
             return context.Response.WriteAsync(@"
 <!DOCTYPE html>
 <html>

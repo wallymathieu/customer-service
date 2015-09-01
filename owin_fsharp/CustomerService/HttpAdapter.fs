@@ -5,6 +5,15 @@ open Owin;
 open System.IO
 open System.Threading.Tasks
 
+module OwinAdapter=
+    let appMap (path: string) (map : IAppBuilder->unit) (app: IAppBuilder): IAppBuilder =
+        app.Map(path, map)
+    let appRun func (b: IAppBuilder) =
+        b.Run(Func<_,_>(func))
+    let appMapWhen when' then' (b: IAppBuilder) =
+        b.MapWhen(Func<_,_>(when'), Action<_>(then'))
+open OwinAdapter
+
 type HttpAdapter(svc: ICustomerService) = 
     let svc = svc
     let indexHtml = """
@@ -43,10 +52,17 @@ You can mock implementation of the api here:
         context.Response.ContentType <- "application/xml";
         context.Response.WriteAsync(Serializer.serialize(svc.GetAllCustomers()));
 
-    member __.configuration (app: IAppBuilder)=
-        app
-            .Map("/index.html", (fun b ->b.Run(Func<_,_>(Index))))
-            .Map("/CustomerService.svc/GetAllCustomers", (fun b-> b.Run(Func<_,_>(GetAllCustomers))))
-            .Map("/CustomerService.svc/SaveCustomer", (fun b -> b.Run(Func<_,_>(SaveCustomer))))
-            .Map("", (fun b-> b.Run(Func<_,_>(Index)))) |> ignore
 
+    member __.Configuration (app: IAppBuilder)=
+        let matchIndex (ctx: IOwinContext)=
+            ctx.Request.Path.Value.Equals("/")
+
+        app
+            |> appMap "/index.html" (appRun Index)
+            |> appMap "/CustomerService.svc" (fun b' -> 
+                    b'|> appMap "/GetAllCustomers" (appRun GetAllCustomers)
+                      |> appMap "/SaveCustomer" (appRun SaveCustomer)
+                      |> ignore
+                 )
+            |> appMapWhen matchIndex (appRun Index)
+            |> ignore
