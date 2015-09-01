@@ -45,7 +45,7 @@ You can mock implementation of the api here:
                 let c = Serializer.deserialize(context.Request.Body);
                 context.Response.WriteAsync(Serializer.serialize(svc.SaveCustomers(c)))
             else
-                context.Response.StatusCode <- 404;
+                context.Response.StatusCode <- 404
                 context.Response.WriteAsync("Not found")
         
     let GetAllCustomers (context: IOwinContext) : Task = 
