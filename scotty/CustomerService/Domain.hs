@@ -1,5 +1,5 @@
 module CustomerService.Domain where
-
+import CustomerService.Xml
 
 data Gender = Male | Female | Boy | Girl
     deriving (Read, Show, Enum, Eq, Ord)
