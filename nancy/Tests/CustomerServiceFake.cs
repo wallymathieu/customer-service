@@ -65,6 +65,10 @@ namespace Tests
             }
             return false;
         }
+        public void Clear()
+        {
+            this.AllCustomers.Clear();
+        }
     }
 }
 

@@ -15,12 +15,17 @@ namespace Tests
         private CustomerServiceFake svc;
         private INancyBootstrapper bootstrapper;
         private Browser browser;
-        [SetUp]
-        public void BeforeEachTest()
+        [TestFixtureSetUp]
+        public void OnceBeforeAnyTest()
         {
             svc = new CustomerServiceFake();
             bootstrapper = new TestBootstrapper(svc);
             browser = new Browser(bootstrapper, defaults: to => to.Accept("application/xml"));
+        }
+        [TearDown]
+        public void AfterEachTest()
+        {
+            svc.Clear();
         }
 
         [Test]
