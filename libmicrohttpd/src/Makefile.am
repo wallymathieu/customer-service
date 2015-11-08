@@ -1,3 +1,5 @@
 bin_PROGRAMS = srv
 srv_SOURCES = main.c
 
+srv_CPPFLAGS = $(MICROHTTPD_CFLAGS)
+srv_LDFLAGS= $(MICROHTTPD_LIBS)

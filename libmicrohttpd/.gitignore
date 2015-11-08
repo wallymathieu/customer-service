@@ -17,3 +17,6 @@ Makefile
 
 /config.*
 
+/src/config.h
+/src/srv
+/src/*.o
