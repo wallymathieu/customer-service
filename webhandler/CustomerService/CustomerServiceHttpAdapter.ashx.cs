@@ -29,8 +29,7 @@ namespace Customers
 
         public void ProcessRequest(IHttpContext context)
         {
-            var command = HttpUtility.GetLastPath(context.Request.Url.AbsolutePath);
-            var x = context.Request.Url;
+            var command = HttpUtility.GetLastPath(context.Request.Url);
             switch (command)
             {
                 case "GetAllCustomers":
