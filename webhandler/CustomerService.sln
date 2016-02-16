@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22823.1
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerService", "CustomerService\CustomerService.csproj", "{8F7B8C6C-0BE2-48DF-A8F7-AB1B5F2B502E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{86C45C28-D4E1-4CA8-8876-4E49BF6F50C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpModule", "HttpModule\HttpModule.csproj", "{D3D1904B-BFFC-41D2-BEC1-7697DE1ED4E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{86C45C28-D4E1-4CA8-8876-4E49BF6F50C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86C45C28-D4E1-4CA8-8876-4E49BF6F50C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86C45C28-D4E1-4CA8-8876-4E49BF6F50C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3D1904B-BFFC-41D2-BEC1-7697DE1ED4E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3D1904B-BFFC-41D2-BEC1-7697DE1ED4E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3D1904B-BFFC-41D2-BEC1-7697DE1ED4E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3D1904B-BFFC-41D2-BEC1-7697DE1ED4E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
