@@ -1,23 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace Customers
 {
     public class Startup
     {
-        JsonSerializer serializer = JsonSerializer.Create(new JsonSerializerSettings
-        {
-            ContractResolver = new CamelCasePropertyNamesContractResolver(),
-        });
         private ICustomerService svc;
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -77,18 +67,17 @@ You can mock implementation of the api here:
         {
             if (context.Request.Method.Equals("POST"))
             {
-                context.Response.ContentType = "application/xml";
-                using (var reader = new StreamReader(context.Request.Body))
-                using (var jsonReader = new JsonTextReader(reader))
+                if (context.Request.TryReadFromXml<Customer>(out var customer))
                 {
-                    var c = serializer.Deserialize<Customer>(jsonReader);
-                    var res = svc.SaveCustomer(c);
-                    using (var writer = new StreamWriter(context.Response.Body))
-                    using (var jsonWriter = new JsonTextWriter(writer))
-                    {
-                        serializer.Serialize(jsonWriter, res);
-                    }
+                    context.Response.ContentType = "application/xml";
+                    var result = svc.SaveCustomer(customer);
+                    context.Response.WriteXml(result);
                     return Task.CompletedTask;
+                }
+                else 
+                { 
+                    context.Response.StatusCode = 400;
+                    return context.Response.WriteAsync("Bad request");
                 }
             }
             context.Response.StatusCode = 404;
@@ -99,11 +88,7 @@ You can mock implementation of the api here:
         {
             context.Response.ContentType = "application/xml";
             var res = svc.GetAllCustomers();
-            using (var writer = new StreamWriter(context.Response.Body))
-            using (var jsonWriter = new JsonTextWriter(writer))
-            {
-                serializer.Serialize(jsonWriter, res);
-            }
+            context.Response.WriteXml(res);
             return Task.CompletedTask;
         }
     }
