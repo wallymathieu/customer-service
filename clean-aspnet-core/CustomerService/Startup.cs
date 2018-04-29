@@ -25,10 +25,6 @@ namespace Customers
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
             app.Map("/index.html", b => b.Run(Index));
 
             app.Map("/CustomerService.svc", b1 =>

@@ -6,6 +6,7 @@ using System.Linq;
 using System;
 using Xunit;
 using Microsoft.AspNetCore.TestHost;
+using FluentAssertions;
 
 namespace Tests
 {
@@ -33,8 +34,10 @@ namespace Tests
                 FirstName = "Oskar",
                 LastName = "Gewalli"
             });
-            var result = adapter.HttpClient.GetAsync("/CustomerService.svc/GetAllCustomers").Result;
-            XDocument.Parse(result.Content.ReadAsStringAsync().Result).Should().BeEquivalentTo(XDocument.Parse(@"<?xml version=""1.0"" encoding=""utf-8""?>
+            var result = adapter.CreateClient().GetAsync("/CustomerService.svc/GetAllCustomers").Result;
+            var stringResult = result.Content.ReadAsStringAsync().Result;
+            Console.WriteLine(stringResult);
+            XDocument.Parse(stringResult).Should().BeEquivalentTo(XDocument.Parse(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <ArrayOfCustomer xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns=""http://schemas.datacontract.org/2004/07/Customers"">
   <Customer>
     <AccountNumber>1</AccountNumber>
@@ -65,8 +68,10 @@ namespace Tests
                 LastName = "GewalliZ"
             }))
             {
-                var result = adapter.HttpClient.PostAsync("/CustomerService.svc/SaveCustomer", new StreamContent(c)).Result;
-                XDocument.Parse(result.Content.ReadAsStringAsync().Result).Should().BeEquivalentTo(XDocument.Parse(@"<?xml version=""1.0"" encoding=""utf-8""?>
+                var result = adapter.CreateClient().PostAsync("/CustomerService.svc/SaveCustomer", new StreamContent(c)).Result;
+                var textResult = result.Content.ReadAsStringAsync().Result;
+                Console.WriteLine(textResult);
+                XDocument.Parse(textResult).Should().BeEquivalentTo(XDocument.Parse(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <boolean>true</boolean>"));
                 Assert.Equal("GewalliZ", svc.AllCustomers.Single().LastName);
             }
