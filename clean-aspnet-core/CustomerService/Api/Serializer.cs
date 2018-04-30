@@ -46,6 +46,17 @@ namespace Customers
 
         public T Deserialize<T>(Stream input) => 
             (T)XmlSerializerForType(typeof(T)).Deserialize(input);
+        public T Deserialize<T>(string input)
+        {
+            using (var stream = new MemoryStream())
+            using (var streamWriter = new StreamWriter(stream))
+            {
+                streamWriter.Write(input);
+                streamWriter.Flush();
+                stream.Seek(0, SeekOrigin.Begin);
+                return Deserialize<T>(stream);
+            }
+        }
     }
 }
 

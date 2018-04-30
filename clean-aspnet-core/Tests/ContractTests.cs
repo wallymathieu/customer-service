@@ -5,39 +5,40 @@ using System.Net.Http;
 using System.Linq;
 using System;
 using Xunit;
-using Microsoft.AspNetCore.TestHost;
 using FluentAssertions;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Tests
 {
-    public class ContractTests : IDisposable
+    public class ContractTests
     {
-        private TestServer adapter;
-        private CustomerServiceFake svc;
-        class TestStartup : Startup { }
-        public ContractTests()
+        class TestStartupWithOneCustomer : Startup
         {
-            svc = new CustomerServiceFake();
-            adapter = TestServers.Create<TestStartup>();
+            public override void ConfigureServices(IServiceCollection services)
+            {
+
+                var svcFake = new CustomerServiceFake();
+                svcFake.AllCustomers.Add(new Customer
+                {
+                    AccountNumber = 1,
+                    FirstName = "Oskar",
+                    LastName = "Gewalli"
+                });
+                this.svc = svcFake;
+            }
         }
-        public void Dispose()
-        {
-            adapter.Dispose();
-        }
+
 
         [Fact]
         public void GetAllCustomers()
         {
-            svc.AllCustomers.Add(new Customer
+
+            using (var adapter = TestServers.Create<TestStartupWithOneCustomer>())
             {
-                AccountNumber = 1,
-                FirstName = "Oskar",
-                LastName = "Gewalli"
-            });
-            var result = adapter.CreateClient().GetAsync("/CustomerService.svc/GetAllCustomers").Result;
-            var stringResult = result.Content.ReadAsStringAsync().Result;
-            Console.WriteLine(stringResult);
-            XDocument.Parse(stringResult).Should().BeEquivalentTo(XDocument.Parse(@"<?xml version=""1.0"" encoding=""utf-8""?>
+                var result = adapter.CreateClient().GetAsync("/CustomerService.svc/GetAllCustomers").Result;
+                var stringResult = result.Content.ReadAsStringAsync().Result;
+                //Console.WriteLine(stringResult);
+                XDocument.Parse(stringResult).Should().BeEquivalentTo(XDocument.Parse(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <ArrayOfCustomer xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns=""http://schemas.datacontract.org/2004/07/Customers"">
   <Customer>
     <AccountNumber>1</AccountNumber>
@@ -50,30 +51,32 @@ namespace Tests
     <PictureUri xsi:nil=""true"" />
   </Customer>
 </ArrayOfCustomer>"));
+            }
         }
 
         [Fact]
         public void SaveCustomer()
         {
-            svc.AllCustomers.Add(new Customer
+            using (var adapter = TestServers.Create<TestStartupWithOneCustomer>())
             {
-                AccountNumber = 1,
-                FirstName = "Oskar",
-                LastName = "Gewalli"
-            });
-            using (var c = AsStream(new Customer
-            {
-                AccountNumber = 1,
-                FirstName = "Oskar",
-                LastName = "GewalliZ"
-            }))
-            {
-                var result = adapter.CreateClient().PostAsync("/CustomerService.svc/SaveCustomer", new StreamContent(c)).Result;
-                var textResult = result.Content.ReadAsStringAsync().Result;
-                Console.WriteLine(textResult);
-                XDocument.Parse(textResult).Should().BeEquivalentTo(XDocument.Parse(@"<?xml version=""1.0"" encoding=""utf-8""?>
+
+                using (var c = AsStream(new Customer
+                {
+                    AccountNumber = 1,
+                    FirstName = "Oskar",
+                    LastName = "GewalliZ"
+                }))
+                {
+                    var result = adapter.CreateClient().PostAsync("/CustomerService.svc/SaveCustomer", new StreamContent(c)).Result;
+                    var textResult = result.Content.ReadAsStringAsync().Result;
+                    //Console.WriteLine(textResult);
+                    XDocument.Parse(textResult).Should().BeEquivalentTo(XDocument.Parse(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <boolean>true</boolean>"));
-                Assert.Equal("GewalliZ", svc.AllCustomers.Single().LastName);
+                    var allCustomersString = adapter.CreateClient().GetAsync("/CustomerService.svc/GetAllCustomers").Result.Content.ReadAsStringAsync().Result;
+                    var allCustomers = new Serializer().Deserialize<ArrayOfCustomer>(allCustomersString);
+
+                    Assert.Equal("GewalliZ", allCustomers.Customer.Single().LastName);
+                }
             }
         }
 
