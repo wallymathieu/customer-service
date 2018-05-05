@@ -1,4 +1,4 @@
-# c# implementation using owin 
+# c# implementation using clean asp.net 
 
 Pros:
 - conceptually easy to understand
@@ -7,4 +7,3 @@ Pros:
 
 Cons:
 - raw: no help with mapping posted data to types
-- OWIN is considered dead
