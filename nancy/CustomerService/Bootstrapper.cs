@@ -4,6 +4,8 @@ using Nancy.TinyIoc;
 using Nancy.Bootstrapper;
 using Nancy.ViewEngines;
 using System.Collections.Generic;
+using Nancy.Configuration;
+using Veil;
 using Veil.Parser;
 using Veil.Handlebars;
 
@@ -11,12 +13,10 @@ namespace Customers
 {
     public class Bootstrapper : DefaultNancyBootstrapper
     {
-        protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
+        public override void Configure(INancyEnvironment environment)
         {
-            base.ApplicationStartup(container, pipelines);
-
-            // No registrations should be performed in here, however you may
-            // resolve things that are needed during application startup.
+            base.Configure(environment);
+            environment.Tracing(enabled: false, displayErrorTraces: true);
         }
 
         protected override void ConfigureApplicationContainer(TinyIoCContainer existingContainer)
@@ -26,39 +26,17 @@ namespace Customers
 
             existingContainer
                 .Register<ICustomerService, CustomerService>();
-
         }
 
-        protected override void ConfigureRequestContainer(TinyIoCContainer container, NancyContext context)
-        {
-            // Perform registrations that should have a request lifetime
+        protected override Func<ITypeCatalog, NancyInternalConfiguration> InternalConfiguration => 
+            NancyInternalConfiguration.WithOverrides(c =>
+                c.ViewLocationProvider = typeof(ResourceViewLocationProvider));
 
-            base.ConfigureRequestContainer(container, context);
+        static Bootstrapper() {
+            VeilStaticConfiguration.RegisterParser(new HandlebarsTemplateParserRegistration());
         }
 
-        protected override void RequestStartup(TinyIoCContainer container, IPipelines pipelines, NancyContext context)
-        {
-            base.RequestStartup(container, pipelines, context);
-
-            // No registrations should be performed in here, however you may
-            // resolve things that are needed during request startup.
-        }
-
-        protected override NancyInternalConfiguration InternalConfiguration
-        {
-            get
-            {
-                return NancyInternalConfiguration.WithOverrides(c => c.ViewLocationProvider = typeof(ResourceViewLocationProvider));
-            }
-        }
-
-        protected override IEnumerable<Type> ViewEngines
-        {
-            get
-            {
-                return new[] { typeof(Nancy.ViewEngines.Veil.VeilViewEngine) };
-            }
-        }
+        protected override IEnumerable<Type> ViewEngines => new[] { typeof(Nancy.ViewEngines.Veil.VeilViewEngine) };
     }
 }
 

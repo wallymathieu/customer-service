@@ -6,6 +6,7 @@ build_script:
   - cmd: cd .\owin\ && .\build.cmd && cd ..
   - cmd: cd .\suave\ && .\build.cmd test && cd ..
   - cmd: cd .\owin_fsharp\ && .\build.cmd test && cd ..
+  - cmd: cd .\nancy\ && .\build.cmd && cd ..
 test: off
 nuget:
   account_feed: false

@@ -10,6 +10,7 @@ script:
   - cd ./owin/ && ./build.sh && cd ..
   - cd ./suave/ && ./build.sh test && cd ..
   - cd ./owin_fsharp/ && ./build.sh test && cd ..
+  - cd ./nancy/ && ./build.sh && cd ..
 
 branches:
   only: 
