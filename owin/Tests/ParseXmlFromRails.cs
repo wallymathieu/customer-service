@@ -1,17 +1,15 @@
 ﻿using System;
-using NUnit.Framework;
+using Xunit;
 using Customers;
 using System.IO;
 
 
 namespace Tests
 {
-    [TestFixture]
     public class ParseXmlFromRails
     {
         private string xml;
-        [SetUp]
-        public void BeforeEachTest()
+        public ParseXmlFromRails()
         {
             xml= @"<?xml version=""1.0"" encoding=""UTF-8""?>
 <ArrayOfCustomer xmlns=""http://schemas.datacontract.org/2004/07/Customers"">
@@ -28,7 +26,7 @@ namespace Tests
 </ArrayOfCustomer>";
         }
 
-        [Test]
+        [Fact]
         public void CanParse()
         {
             ArrayOfCustomer customers;
@@ -42,7 +40,7 @@ namespace Tests
                 stream.Seek(0, SeekOrigin.Begin);
                 customers= serializer.Deserialize<ArrayOfCustomer>(stream);
             }
-            Assert.That(customers.Customer.Length, Is.EqualTo(1));
+            Assert.Single(customers.Customer);
         }
     }
 }
