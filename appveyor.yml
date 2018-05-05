@@ -1,0 +1,16 @@
+image: Visual Studio 2017
+version: 1.0.{build}
+configuration: Release
+build_script:
+  - cmd: cd .\clean-aspnet-core\ && .\build.cmd && cd ..
+  - cmd: cd .\owin\ && .\build.cmd && cd ..
+  - cmd: cd .\suave\ && .\build.cmd test && cd ..
+  - cmd: cd .\owin_fsharp\ && .\build.cmd test && cd ..
+test: off
+nuget:
+  account_feed: false
+  project_feed: false
+  disable_publish_on_pr: true
+branches:
+  only:
+  - master

@@ -1,0 +1,16 @@
+sudo: false
+language: csharp 
+dist: trusty
+dotnet: 2.1.105
+install:
+  # workaround for missing .net 4.5 targing pack
+  - export FrameworkPathOverride=$(dirname $(which mono))/../lib/mono/4.5/
+script: 
+  - cd ./clean-aspnet-core/ && ./build.sh && cd ..
+  - cd ./owin/ && ./build.sh && cd ..
+  - cd ./suave/ && ./build.sh test && cd ..
+  - cd ./owin_fsharp/ && ./build.sh test && cd ..
+
+branches:
+  only: 
+    - master

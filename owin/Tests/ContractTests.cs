@@ -1,5 +1,5 @@
 ﻿using System;
-using NUnit.Framework;
+using Xunit;
 using Customers;
 using FluentAssertions;
 using System.Xml.Linq;
@@ -11,25 +11,22 @@ using System.Linq;
 
 namespace Tests
 {
-    [TestFixture]
-    public class ContractTests
+    public class ContractTests:IDisposable
     {
         private TestServer adapter;
         private CustomerServiceFake svc;
 
-        [SetUp]
-        public void BeforeEachTest()
+        public ContractTests()
         {
             svc = new CustomerServiceFake();
             adapter = TestServer.Create(b=> new Startup(new Serializer(), svc).Configuration(b));
         }
-        [TearDown]
-        public void AfterEachTest()
+        public void Dispose()
         {
             adapter.Dispose();
         }
 
-        [Test]
+        [Fact]
         public void GetAllCustomers()
         {
             svc.AllCustomers.Add(new Customer
@@ -54,7 +51,7 @@ namespace Tests
 </ArrayOfCustomer>"));
         }
 
-        [Test]
+        [Fact]
         public void SaveCustomer()
         {
             svc.AllCustomers.Add(new Customer
@@ -73,7 +70,7 @@ namespace Tests
                 var result = adapter.HttpClient.PostAsync("/CustomerService.svc/SaveCustomer", new StreamContent(c)).Result;
                 XDocument.Parse(result.Content.ReadAsStringAsync().Result).Should().BeEquivalentTo(XDocument.Parse(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <boolean>true</boolean>"));
-                Assert.AreEqual("GewalliZ", svc.AllCustomers.Single().LastName);
+                Assert.Equal("GewalliZ", svc.AllCustomers.Single().LastName);
             }
         }
 
