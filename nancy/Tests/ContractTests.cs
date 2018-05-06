@@ -95,7 +95,7 @@ namespace Tests
             });
 
             // Then
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.True(HttpStatusCode.OK == response.StatusCode, $"Response: {response.Body.AsString()}");
             response.BodyAsXml().Should().BeEquivalentTo(XDocument.Parse(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <boolean>true</boolean>"));
         }

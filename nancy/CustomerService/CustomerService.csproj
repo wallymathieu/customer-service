@@ -5,11 +5,11 @@
   <ItemGroup>
     <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
-    <PackageReference Include="Nancy.ViewEngines.Veil" Version="1.0.0-alpha" />
-    <PackageReference Include="Veil" Version="1.0.0-alpha" />
-    <PackageReference Include="Veil.Handlebars" Version="1.0.0-alpha" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="*.html" />
+    <None Remove="*.html" />
+    <Content Include="*.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

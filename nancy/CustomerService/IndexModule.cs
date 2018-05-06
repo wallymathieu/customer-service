@@ -7,9 +7,7 @@ namespace Customers
     {
         public IndexModule()
         {
-            Get("/",args => {
-                return Negotiate.WithView("Index.html");
-            });
+            Get("/",args => Negotiate.WithView("Index"));
         }
     }
 }

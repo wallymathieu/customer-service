@@ -15,12 +15,12 @@
         </tr>
         </thead>
         <tbody>
-        {{#each Customer}}
+        @Each.Customer
             <tr>
-            <td>{{FirstName}}</td>
-            <td>{{LastName}}</td>
+            <td>@Current.FirstName</td>
+            <td>@Current.LastName</td>
             </tr>
-        {{/each}}
+        @EndEach
         </tbody>
     </table>
 </body>

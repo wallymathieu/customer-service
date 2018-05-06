@@ -5,9 +5,6 @@ using Nancy.Bootstrapper;
 using Nancy.ViewEngines;
 using System.Collections.Generic;
 using Nancy.Configuration;
-using Veil;
-using Veil.Parser;
-using Veil.Handlebars;
 
 namespace Customers
 {
@@ -27,16 +24,6 @@ namespace Customers
             existingContainer
                 .Register<ICustomerService, CustomerService>();
         }
-
-        protected override Func<ITypeCatalog, NancyInternalConfiguration> InternalConfiguration => 
-            NancyInternalConfiguration.WithOverrides(c =>
-                c.ViewLocationProvider = typeof(ResourceViewLocationProvider));
-
-        static Bootstrapper() {
-            VeilStaticConfiguration.RegisterParser(new HandlebarsTemplateParserRegistration());
-        }
-
-        protected override IEnumerable<Type> ViewEngines => new[] { typeof(Nancy.ViewEngines.Veil.VeilViewEngine) };
     }
 }
 
