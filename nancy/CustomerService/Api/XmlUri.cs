@@ -14,7 +14,7 @@ namespace Customers
 
         public static implicit operator Uri(XmlUri o)
         {
-            return o == null ? null : o._Value;
+            return o?._Value;
         }
 
         public static implicit operator XmlUri(Uri o)
@@ -29,7 +29,8 @@ namespace Customers
 
         public void ReadXml(XmlReader reader)
         {
-            _Value = new Uri(reader.ReadElementContentAsString());
+            var val = reader.ReadElementContentAsString();
+            _Value = string.IsNullOrEmpty(val) ? null : new Uri(val);
         }
 
         public void WriteXml(XmlWriter writer)
