@@ -1,26 +1,17 @@
 ﻿using System;
-using Nancy.Hosting.Self;
-using Nancy;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Customers
 {
-    class MainClass
+    public class MainClass
     {
         public static void Main(string[] args)
         {
-            var conf = new HostConfiguration()
-                {
-                    AllowChunkedEncoding = true,
-                    UrlReservations = { CreateAutomatically = true }
-                };
-            StaticConfiguration.DisableErrorTraces = false;
-            using (var host = new NancyHost(conf, new Uri("http://localhost:8080")))
-            {
-                Console.WriteLine("Started");
-                host.Start();
-                Console.ReadLine();
-            }
+            BuildWebHost(args).Run();
         }
+
+        public static IWebHost BuildWebHost(string[] args) => WebHost.CreateDefaultBuilder(args).UseStartup<Startup>().Build();
     
     }
 }

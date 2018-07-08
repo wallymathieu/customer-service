@@ -1,77 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{83DE76D9-29E8-406E-B3E2-1FB1E2951E52}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Customers</RootNamespace>
-    <AssemblyName>CustomerService</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Externalconsole>true</Externalconsole>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Externalconsole>true</Externalconsole>
-    <PlatformTarget>x86</PlatformTarget>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="Nancy">
-      <HintPath>..\packages\Nancy.1.2.0\lib\net40\Nancy.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy.Hosting.Self">
-      <HintPath>..\packages\Nancy.Hosting.Self.1.2.0\lib\net40\Nancy.Hosting.Self.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml" />
-    <Reference Include="Veil">
-      <HintPath>..\packages\Veil.0.3.1\lib\net40\Veil.dll</HintPath>
-    </Reference>
-    <Reference Include="Veil.Handlebars">
-      <HintPath>..\packages\Veil.Handlebars.0.3.1\lib\net40\Veil.Handlebars.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy.ViewEngines.Veil">
-      <HintPath>..\packages\Nancy.ViewEngines.Veil.0.3.1\lib\net40\Nancy.ViewEngines.Veil.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Nancy" Version="2.0.0-pre1911" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CustomerServiceModule.cs" />
-    <Compile Include="Api\ArrayOfCustomer.cs" />
-    <Compile Include="Api\Customer.cs" />
-    <Compile Include="Api\CustomerGender.cs" />
-    <Compile Include="Api\XmlUri.cs" />
-    <Compile Include="Api\Serializer.cs" />
-    <Compile Include="CustomerService.cs" />
-    <Compile Include="ICustomerService.cs" />
-    <Compile Include="Bootstrapper.cs" />
-    <Compile Include="IndexModule.cs" />
-    <Compile Include="CustomParserRegistration.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Api\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ArrayOfCustomer.html" />
-    <EmbeddedResource Include="Index.html" />
+    <None Remove="*.html" />
+    <Content Include="*.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

@@ -1,47 +1,45 @@
 ﻿using System;
-using NUnit.Framework;
+using System.Threading.Tasks;
 using Nancy;
 using Nancy.Testing;
 using FluentAssertions;
 using System.Xml.Linq;
 using Nancy.Bootstrapper;
 using Customers;
+using Xunit;
 
 namespace Tests
 {
-    [TestFixture]
-    public class ContractTests
+    public class ContractTests:IDisposable
     {
         private CustomerServiceFake svc;
         private INancyBootstrapper bootstrapper;
         private Browser browser;
-        [TestFixtureSetUp]
-        public void OnceBeforeAnyTest()
+        public ContractTests()
         {
             svc = new CustomerServiceFake();
             bootstrapper = new TestBootstrapper(svc);
             browser = new Browser(bootstrapper, defaults: to => to.Accept("application/xml"));
         }
-        [TearDown]
-        public void AfterEachTest()
+        public void Dispose()
         {
             svc.Clear();
         }
 
-        [Test]
-        public void Should_return_status_ok_for_root_url()
+        [Fact]
+        public async Task Should_return_status_ok_for_root_url()
         {
             // When
-            var result = browser.Get("/", with => {
+            var result = await browser.Get("/", with => {
                 with.HttpRequest();
             });
 
             // Then
-            Assert.AreEqual(HttpStatusCode.OK, result.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, result.StatusCode);
         }
 
-        [Test]
-        public void Should_GetAllCustomers()
+        [Fact]
+        public async Task Should_GetAllCustomers()
         {
             // Given
             svc.AllCustomers.Add(new Customer
@@ -52,7 +50,7 @@ namespace Tests
                 });
             
             // When
-            var response = browser.Get("/CustomerService.svc/GetAllCustomers", (with) => {
+            var response =await browser.Get("/CustomerService.svc/GetAllCustomers", (with) => {
                 with.HttpRequest();
             });
 
@@ -74,8 +72,8 @@ namespace Tests
 </ArrayOfCustomer>"));
         }
 
-        [Test]
-        public void SaveCustomer()
+        [Fact]
+        public async Task SaveCustomer()
         {
             // Given
             svc.AllCustomers.Add(new Customer
@@ -86,7 +84,7 @@ namespace Tests
                 });
 
             // When
-            var response = browser.Post("/CustomerService.svc/SaveCustomer", (with) => {
+            var response =await browser.Post("/CustomerService.svc/SaveCustomer", (with) => {
                 with.HttpRequest();
                 with.XMLBody(new Customer
                     { 
@@ -97,6 +95,7 @@ namespace Tests
             });
 
             // Then
+            Assert.True(HttpStatusCode.OK == response.StatusCode, $"Response: {response.Body.AsString()}");
             response.BodyAsXml().Should().BeEquivalentTo(XDocument.Parse(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <boolean>true</boolean>"));
         }
