@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,21 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616191601) do
+ActiveRecord::Schema.define(version: 2018_10_27_160043) do
 
   create_table "customers", force: :cascade do |t|
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "account_number"
-    t.string   "address_city"
-    t.string   "address_country"
-    t.string   "address_street"
-    t.string   "first_name"
-    t.string   "gender"
-    t.string   "last_name"
-    t.string   "picture_uri"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "account_number"
+    t.string "address_city"
+    t.string "address_country"
+    t.string "address_street"
+    t.string "first_name"
+    t.string "gender"
+    t.string "last_name"
+    t.string "picture_uri"
+    t.index ["account_number"], name: "index_customers_on_account_number"
   end
-
-  add_index "customers", ["account_number"], name: "index_customers_on_account_number"
 
 end
