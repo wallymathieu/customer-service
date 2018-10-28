@@ -33,10 +33,9 @@ $single_customer = <<-END
 </Customer>
 END
 
-class CustomerServiceControllerTest < ActionController::TestCase
-
+class CustomerServiceControllerTest < ActionDispatch::IntegrationTest
   test "should get all customer" do
-    get :get_all_customers, :format => "xml"
+    get "/CustomerService.svc/GetAllCustomers", params: { :format => "xml" }
     assert_response :success
     assert_equal( $get_all_customers, response.body )
   end
@@ -55,7 +54,7 @@ class CustomerServiceControllerTest < ActionController::TestCase
       "LastName"=>"Gewalli", 
       "PictureUri"=>{"xsi:nil"=>"true"}
     }
-    post :save_customer, $single_customer, { :Customer => customer,
+    post "/CustomerService.svc/SaveCustomer", params: { :Customer => customer, #$single_customer
       'CONTENT_TYPE' => 'application/xml', 
       :format => "xml"
     }

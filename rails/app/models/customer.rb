@@ -1,5 +1,4 @@
-class Customer < ActiveRecord::Base
-  
+class Customer < ApplicationRecord
   def accept_changes(hash)
     attributes.select do |key, value|
       key != :account_number
