@@ -1,4 +1,4 @@
-# f# implementation of customer service using owin
+# f# implementation of customer service using clean asp.net core
 
 ## Description of files
 

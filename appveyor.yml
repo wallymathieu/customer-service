@@ -12,7 +12,7 @@ build_script:
   - cmd: cd .\clean-aspnet-core\ && .\build.cmd && cd ..
   - cmd: cd .\owin\ && .\build.cmd && cd ..
   - cmd: cd .\suave\ && .\build.cmd test && cd ..
-  - cmd: cd .\owin_fsharp\ && .\build.cmd test && cd ..
+  - cmd: cd .\clean-aspnet-core-fsharp\ && .\build.cmd test && cd ..
   - cmd: cd .\nancy\ && .\build.cmd && cd ..
   - cmd: cd .\node\ && npm run test && cd ..
 

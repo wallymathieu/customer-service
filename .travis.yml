@@ -9,7 +9,7 @@ script:
   - cd ./clean-aspnet-core/ && ./build.sh && cd ..
   - cd ./owin/ && ./build.sh && cd ..
   - cd ./suave/ && ./build.sh test && cd ..
-  - cd ./owin_fsharp/ && ./build.sh test && cd ..
+  - cd ./clean-aspnet-core-fsharp/ && ./build.sh test && cd ..
   - cd ./nancy/ && ./build.sh && cd ..
   - cd ./node/ && npm install && npm run test && cd ..
 
