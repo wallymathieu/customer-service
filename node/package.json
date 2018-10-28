@@ -8,6 +8,10 @@
     "type": "git",
     "url": "https://github.com/wallymathieu/CustomerService"
   },
+  "scripts": {
+    "start": "node index.js",
+    "test": "node ./node_modules/.bin/jasmine"
+  },
   "license": "MIT",
   "developedBy": "wallymathieu",
   "devDependencies": {
@@ -20,6 +24,7 @@
     "bluebird": "^2.9.30",
     "express": "^4.12.4",
     "lodash": "^3.9.3",
+    "xml2js": "^0.4.19",
     "xmlbuilder": "^2.6.4"
   }
 }

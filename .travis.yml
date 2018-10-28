@@ -11,6 +11,7 @@ script:
   - cd ./suave/ && ./build.sh test && cd ..
   - cd ./owin_fsharp/ && ./build.sh test && cd ..
   - cd ./nancy/ && ./build.sh && cd ..
+  - cd ./node/ && npm install && npm run test && cd ..
 
 branches:
   only: 
