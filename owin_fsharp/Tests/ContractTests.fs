@@ -1,17 +1,16 @@
 ﻿namespace Tests
 open System
-open NUnit.Framework
-open FsUnit
 open Customers
 open System.Text
 open FluentAssertions
 open FluentAssertions.Xml
+open Microsoft.AspNetCore.Hosting
+open Microsoft.AspNetCore.TestHost
 open System.Xml.Linq
-open Microsoft.Owin.Testing
 open System.Net.Http
 open System.IO
+open Xunit
 
-    [<TestFixture>] 
     type ``ContractTests``() =
         let customer = {Customer.Empty with AccountNumber = 1; FirstName = "Oskar"; LastName = "Gewalli" }
         let ns =  "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"http://schemas.datacontract.org/2004/07/Customers\""
@@ -43,24 +42,23 @@ open System.IO
 
         let context c=
             let svc = new CustomerServiceFake(c)
-            TestServer.Create(fun b-> 
-                let a = new HttpAdapter(svc)
-                a.Configuration(b)
-                )
+            let builder = WebHostBuilder()
+                            .Configure(fun app->HttpAdapter.configuration svc app)
+            new TestServer(builder)
  
         let GETXml (server: TestServer) (url:string)=
-            server.HttpClient.GetAsync(url).Result.Content.ReadAsStringAsync().Result;
+            server.CreateClient().GetAsync(url).Result.Content.ReadAsStringAsync().Result;
         let POSTXml (server: TestServer) (url:string) c=
-            server.HttpClient.PostAsync(url, c).Result.Content.ReadAsStringAsync().Result;
+            server.CreateClient().PostAsync(url, c).Result.Content.ReadAsStringAsync().Result;
 
 
 
-        [<Test>] member test.
+        [<Fact>] member test.
          ``get all customers`` ()=
             let result = GETXml (context([|customer|])) "/CustomerService.svc/GetAllCustomers" in
                 should_be_xml_equivalent serializedCustomers result
                     
-        [<Test>] member test.
+        [<Fact>] member test.
          ``save customer`` ()=
             using (new StreamContent(serialized customer))
             (fun s->

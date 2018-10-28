@@ -3,7 +3,8 @@ open System
 open System.IO
 open System.Text
 open System.Text.RegularExpressions
-open Perch
+open CustomerService.Xml
+open FSharpx
 
 module Serializer = 
     let parseToNamespaces str=

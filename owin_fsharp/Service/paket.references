@@ -1,7 +1,0 @@
-FSharpx.Extras
-FSharp.Core
-
-Microsoft.Owin
-Microsoft.Owin.Host.HttpListener
-Microsoft.Owin.Hosting
-Owin

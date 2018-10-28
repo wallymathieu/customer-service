@@ -3,21 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{A369A633-05F9-429F-BCDA-CFAA85A49BB8}"
-	ProjectSection(SolutionItems) = preProject
-		paket.dependencies = paket.dependencies
-	EndProjectSection
-EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "CustomerService", "CustomerService\CustomerService.fsproj", "{8303247C-D485-420A-AEE5-D4C7373D9A9E}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tests", "Tests\Tests.fsproj", "{6533E66C-DD2B-4D79-B6C7-B7D50178EDAF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D0BDFDBC-E7DD-4A0C-AE9D-8FA1C84F76F0}"
-	ProjectSection(SolutionItems) = preProject
-		build.fsx = build.fsx
-	EndProjectSection
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Service", "Service\Service.fsproj", "{4F6B33F7-7B0D-4C9D-A2BE-D1B4409A1ADF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +23,6 @@ Global
 		{6533E66C-DD2B-4D79-B6C7-B7D50178EDAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6533E66C-DD2B-4D79-B6C7-B7D50178EDAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6533E66C-DD2B-4D79-B6C7-B7D50178EDAF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F6B33F7-7B0D-4C9D-A2BE-D1B4409A1ADF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F6B33F7-7B0D-4C9D-A2BE-D1B4409A1ADF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F6B33F7-7B0D-4C9D-A2BE-D1B4409A1ADF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F6B33F7-7B0D-4C9D-A2BE-D1B4409A1ADF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
