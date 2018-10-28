@@ -10,14 +10,14 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "node ./node_modules/.bin/jasmine-node --verbose  --matchall ./spec/"
+    "test": "node ./node_modules/.bin/jasmine-node --verbose  --matchAll ./spec/"
   },
   "license": "MIT",
   "developedBy": "wallymathieu",
   "devDependencies": {
     "grunt": "^1.0.3",
     "jasmine": "^3.3.0",
-    "jasmine-node": "^1.14.5",
+    "jasmine-node": "^2.0.1",
     "matchdep": "^2.0.0"
   },
   "dependencies": {
