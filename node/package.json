@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "node ./node_modules/.bin/jasmine"
+    "test": "node ./node_modules/.bin/jasmine-node --verbose  --matchall ./spec/"
   },
   "license": "MIT",
   "developedBy": "wallymathieu",
