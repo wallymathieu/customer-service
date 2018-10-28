@@ -7,7 +7,6 @@ install:
   - export FrameworkPathOverride=$(dirname $(which mono))/../lib/mono/4.5/
 script: 
   - cd ./clean-aspnet-core/ && ./build.sh && cd ..
-  - cd ./owin/ && ./build.sh && cd ..
   - cd ./suave/ && ./build.sh test && cd ..
   - cd ./clean-aspnet-core-fsharp/ && ./build.sh test && cd ..
   - cd ./nancy/ && ./build.sh && cd ..
