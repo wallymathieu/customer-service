@@ -6,9 +6,9 @@ type CustomerService () =
         line.Split([|','|]) |> Seq.map trim |> Seq.toList
     let mapToCustomer (columns: string list)=
          {Customer.Empty with 
-            AccountNumber = columns |> List.head |> Int32.Parse ; 
-            FirstName = List.nth columns 1; 
-            LastName = List.nth columns 2;
+            AccountNumber = columns |> List.head |> Int32.Parse 
+            FirstName = List.item 1 columns 
+            LastName = List.item 2 columns
          }
 
     let cs = """1,Oskar,Gewalli,

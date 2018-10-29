@@ -1,11 +1,10 @@
 ﻿namespace Tests
-open NUnit.Framework
-open FsUnit
+open Xunit
 open Customers
 open System.Text
 open System.IO
+open FluentAssertions
 
-    [<TestFixture>] 
     type ``ParseXmlFromRails``() =
         let customer = {Customer.Empty with AccountNumber = 1; FirstName = "Oskar"; LastName = "Gewalli" }
 
@@ -31,11 +30,11 @@ open System.IO
             s.Seek(0L, SeekOrigin.Begin) |> ignore
             s
 
-        [<Test>] member test.
+        [<Fact>] member test.
          ``CanParse`` ()=
             using (asStream xml)
             (fun stream->
                 match Serializer.deserialize(stream) with 
-                    | CustomerInput.Single _ -> Assert.Fail("expected multiple")
-                    | CustomerInput.Multiple cs -> cs |> List.head |> should equal customer
+                    | CustomerInput.Single _ -> failwith "expected multiple"
+                    | CustomerInput.Multiple cs -> (cs |> List.head).Should().Be(customer, "customer")
             )
