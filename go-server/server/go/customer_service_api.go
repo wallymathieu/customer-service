@@ -14,16 +14,19 @@ import (
 	"net/http"
 )
 
-func Get(w http.ResponseWriter, r *http.Request) {
+type CustomerServiceApi struct {
+	service CustomerService
+}
+
+func (a *CustomerServiceApi) Get(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 	enc := json.NewEncoder(w)
-	c := Customer{FirstName: "first name", LastName: "last name", Gender: 1}
-	cs := ArrayOfCustomer{Customer: []Customer{c}}
+	cs := ArrayOfCustomer{Customer: a.service.GetAll()}
 	enc.Encode(cs)
 }
 
-func Post(w http.ResponseWriter, r *http.Request) {
+func (a *CustomerServiceApi) Post(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	decoder := json.NewDecoder(r.Body)
 	var input Customer
@@ -31,10 +34,14 @@ func Post(w http.ResponseWriter, r *http.Request) {
 	err := decoder.Decode(&input)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		res := false
-		enc.Encode(res)
+		enc.Encode(false)
 		return
 	}
-	res := false
-	enc.Encode(res)
+	err = a.service.Add(input)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		enc.Encode(false)
+		return
+	}
+	enc.Encode(true)
 }

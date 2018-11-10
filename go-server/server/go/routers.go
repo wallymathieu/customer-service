@@ -26,8 +26,32 @@ type Route struct {
 
 type Routes []Route
 
-func NewRouter() *mux.Router {
+func NewRouter(svc CustomerService) *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
+	api := CustomerServiceApi{service: svc}
+	var routes = Routes{
+		Route{
+			"Index",
+			"GET",
+			"/",
+			Index,
+		},
+
+		Route{
+			"Get",
+			strings.ToUpper("Get"),
+			"/CustomerService.svc/GetAllCustomers",
+			api.Get,
+		},
+
+		Route{
+			"Post",
+			strings.ToUpper("Post"),
+			"/CustomerService.svc/SaveCustomer",
+			api.Post,
+		},
+	}
+
 	for _, route := range routes {
 		var handler http.Handler
 		handler = route.HandlerFunc
@@ -45,27 +69,4 @@ func NewRouter() *mux.Router {
 
 func Index(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello World!")
-}
-
-var routes = Routes{
-	Route{
-		"Index",
-		"GET",
-		"/",
-		Index,
-	},
-
-	Route{
-		"Get",
-		strings.ToUpper("Get"),
-		"/CustomerService.svc/GetAllCustomers",
-		Get,
-	},
-
-	Route{
-		"Post",
-		strings.ToUpper("Post"),
-		"/CustomerService.svc/SaveCustomer",
-		Post,
-	},
 }

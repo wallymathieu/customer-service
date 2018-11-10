@@ -25,8 +25,9 @@ import (
 
 func main() {
 	log.Printf("Server started")
-
-	router := sw.NewRouter()
+	svc := new(sw.InMemoryCustomerService)
+	svc.Add(sw.Customer{FirstName: "first name", LastName: "last name", Gender: 1})
+	router := sw.NewRouter(svc)
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
