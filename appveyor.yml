@@ -14,6 +14,7 @@ build_script:
   - cmd: cd .\clean-aspnet-core-fsharp\ && .\build.cmd test && cd ..
   - cmd: cd .\nancy\ && .\build.cmd && cd ..
   - cmd: cd .\node\ && npm run test && cd ..
+  - cmd: cd .\aspnet-mvc\ && .\build.cmd test && cd ..
 
 test: off
 nuget:

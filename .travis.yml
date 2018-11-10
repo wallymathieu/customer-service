@@ -11,7 +11,7 @@ script:
   - cd ./clean-aspnet-core-fsharp/ && ./build.sh test && cd ..
   - cd ./nancy/ && ./build.sh && cd ..
   - cd ./node/ && npm install && npm run test && cd ..
-
+  - cd ./aspnet-mvc/ && ./build.sh test && cd ..
 branches:
   only: 
     - master
