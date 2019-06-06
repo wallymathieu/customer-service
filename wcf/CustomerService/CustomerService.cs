@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Customers
 {
@@ -22,10 +23,20 @@ namespace Customers
             };
         }
 
+        public Task<ArrayOfCustomer> GetAllCustomersAsync()
+        {
+            return Task.FromResult(GetAllCustomers());
+        }
+
         public Customer GetCustomerByAccountNumber(int accountNumber)
         {
             return GetAllCustomers().Customer
                 .SingleOrDefault(c => c.AccountNumber == accountNumber);
+        }
+
+        public Task<Customer> GetCustomerByAccountNumberAsync(int accountNumber)
+        {
+            return Task.FromResult(GetCustomerByAccountNumber(accountNumber));
         }
 
         public ArrayOfCustomer GetCustomers(string lastName)
@@ -37,14 +48,31 @@ namespace Customers
             };
         }
 
+        public Task<ArrayOfCustomer> GetCustomersAsync(string lastName)
+        {
+            return Task.FromResult(GetCustomers(lastName));
+        }
+
         public bool SaveCustomer(Customer editedCustomer)
         {
             return false;
+        }
+
+        public Task<bool> SaveCustomerAsync(Customer editedCustomer)
+        {
+            return Task.FromResult( false);
         }
 
         public bool SaveCustomerLastName(string accountNumber, string newName)
         {
             return false;
         }
+
+        public Task<bool> SaveCustomerLastNameAsync(string accountNumber, string newName)
+        {
+            return Task.FromResult(false);
+        }
+
+
     }
 }

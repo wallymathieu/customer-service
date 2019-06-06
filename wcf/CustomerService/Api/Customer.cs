@@ -1,26 +1,26 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using System.Xml.Serialization;
 namespace Customers
 {
-    [XmlRoot(Namespace = "http://schemas.datacontract.org/2004/07/Customers")]
-    [XmlType(Namespace = "http://schemas.datacontract.org/2004/07/Customers")]
+    [DataContract(Name = "Customer", Namespace = "http://schemas.datacontract.org/2004/07/Customers")]
     public partial class Customer : object
     {
-        [XmlElement()]
+        [DataMember]
         public int AccountNumber{ get; set; }
-        [XmlElement(IsNullable=true)]
+        [DataMember]
         public string AddressCity{ get; set; }
-        [XmlElement(IsNullable=true)]
+        [DataMember]
         public string AddressCountry{ get; set; }
-        [XmlElement(IsNullable=true)]
+        [DataMember]
         public string AddressStreet{ get; set; }
-        [XmlElement()]
+        [DataMember]
         public string FirstName{ get; set; }
-        [XmlElement()]
+        [DataMember]
         public CustomerGender Gender{ get; set; }
-        [XmlElement()]
+        [DataMember]
         public string LastName{ get; set; }
-        [XmlElement(IsNullable=true)]
-        public XmlUri PictureUri{ get; set; }
+        [DataMember]
+        public Uri PictureUri{ get; set; }
     }
 }

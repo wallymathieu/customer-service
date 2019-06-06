@@ -3,9 +3,11 @@ using Customers;
 using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading.Tasks;
+
 namespace Tests
 {
-    public class CustomerServiceFake:ICustomerService
+    public class CustomerServiceFake : ICustomerService
     {
         public CustomerServiceFake ()
         {
@@ -64,6 +66,31 @@ namespace Tests
                 return true;
             }
             return false;
+        }
+
+        public Task<ArrayOfCustomer> GetCustomersAsync(string lastName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Customer> GetCustomerByAccountNumberAsync(int accountNumber)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ArrayOfCustomer> GetAllCustomersAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> SaveCustomerAsync(Customer editedCustomer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> SaveCustomerLastNameAsync(string accountNumber, string newName)
+        {
+            throw new NotImplementedException();
         }
     }
 }
