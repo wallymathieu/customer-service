@@ -12,6 +12,7 @@ script:
   - cd ./nancy/ && ./build.sh && cd ..
   - cd ./node/ && npm install && npm run test && cd ..
   - cd ./aspnet-mvc/ && ./build.sh test && cd ..
+  - cd ./aspnet-wcf/ && ./build.sh test && cd ..
 branches:
   only: 
     - master
