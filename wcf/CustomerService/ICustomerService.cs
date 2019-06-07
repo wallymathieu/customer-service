@@ -13,7 +13,7 @@ namespace Customers
         [OperationContract(Action = "http://tempuri.org/ICustomerService/GetAllCustomers", ReplyAction = "http://tempuri.org/ICustomerService/GetAllCustomersResponse")]
         Task<ArrayOfCustomer> GetAllCustomersAsync();
         [OperationContract(Action = "http://tempuri.org/ICustomerService/SaveCustomer", ReplyAction = "http://tempuri.org/ICustomerService/SaveCustomerResponse")]
-        Task<bool> SaveCustomerAsync(Customer editedCustomer);
+        Task<bool> SaveCustomerAsync(Customer customer);
         [OperationContract(Action = "http://tempuri.org/ICustomerService/SaveCustomerLastName", ReplyAction = "http://tempuri.org/ICustomerService/SaveCustomerLastNameResponse")]
         Task<bool> SaveCustomerLastNameAsync(string accountNumber, string newName);
     }

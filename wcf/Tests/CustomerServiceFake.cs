@@ -37,18 +37,18 @@ namespace Tests
             };
         }
 
-        public bool SaveCustomer(Customer editedCustomer)
+        public bool SaveCustomer(Customer customer)
         {
-            var customer = AllCustomers
-                .SingleOrDefault(c => c.AccountNumber == editedCustomer.AccountNumber);
-            if (customer != null)
+            var dbCustomer = AllCustomers
+                .SingleOrDefault(c => c.AccountNumber == customer.AccountNumber);
+            if (dbCustomer != null)
             {
                 var properties = typeof(Customer).GetProperties(
                     BindingFlags.Instance | BindingFlags.Public);
                 foreach (var property in properties)
                 {
-                    property.SetValue(customer, 
-                        property.GetValue(editedCustomer));
+                    property.SetValue(dbCustomer, 
+                        property.GetValue(customer));
                 }
                 return true;
             }
@@ -74,7 +74,7 @@ namespace Tests
 
         public Task<ArrayOfCustomer> GetAllCustomersAsync() => Task.FromResult(GetAllCustomers());
 
-        public Task<bool> SaveCustomerAsync(Customer editedCustomer) => Task.FromResult(SaveCustomer(editedCustomer));
+        public Task<bool> SaveCustomerAsync(Customer customer) => Task.FromResult(SaveCustomer(customer));
 
         public Task<bool> SaveCustomerLastNameAsync(string accountNumber, string newName) => Task.FromResult(SaveCustomerLastName(accountNumber, newName));
     }
