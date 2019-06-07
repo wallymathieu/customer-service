@@ -13,10 +13,4 @@
   <ItemGroup>
     <ProjectReference Include="..\CustomerService\CustomerService.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Connected Services\" />
-  </ItemGroup>
 </Project>

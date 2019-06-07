@@ -68,30 +68,15 @@ namespace Tests
             return false;
         }
 
-        public Task<ArrayOfCustomer> GetCustomersAsync(string lastName)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<ArrayOfCustomer> GetCustomersAsync(string lastName) => Task.FromResult(GetCustomers(lastName));
 
-        public Task<Customer> GetCustomerByAccountNumberAsync(int accountNumber)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<Customer> GetCustomerByAccountNumberAsync(int accountNumber) => Task.FromResult(GetCustomerByAccountNumber(accountNumber));
 
-        public Task<ArrayOfCustomer> GetAllCustomersAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public Task<ArrayOfCustomer> GetAllCustomersAsync() => Task.FromResult(GetAllCustomers());
 
-        public Task<bool> SaveCustomerAsync(Customer editedCustomer)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<bool> SaveCustomerAsync(Customer editedCustomer) => Task.FromResult(SaveCustomer(editedCustomer));
 
-        public Task<bool> SaveCustomerLastNameAsync(string accountNumber, string newName)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<bool> SaveCustomerLastNameAsync(string accountNumber, string newName) => Task.FromResult(SaveCustomerLastName(accountNumber, newName));
     }
 }
 
