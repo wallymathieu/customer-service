@@ -1,10 +1,16 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerService", "CustomerService\CustomerService.csproj", "{6AAB605E-9125-47A3-A44A-AC6DEB2CD2AA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{3132FD0A-A64E-4786-9AD7-F886ACFA7F34}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SoapCore", "SoapCore", "{80CD5C8B-F6E3-4622-A445-7338843A790B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6E59B9BE-3DF4-42FD-A203-A2A09292A15C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoapCore", "SoapCore\src\SoapCore\SoapCore.csproj", "{F99BDD69-F887-4026-89AB-97F49B9BBDA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,11 +46,27 @@ Global
 		{3132FD0A-A64E-4786-9AD7-F886ACFA7F34}.Release|x64.Build.0 = Release|Any CPU
 		{3132FD0A-A64E-4786-9AD7-F886ACFA7F34}.Release|x86.ActiveCfg = Release|Any CPU
 		{3132FD0A-A64E-4786-9AD7-F886ACFA7F34}.Release|x86.Build.0 = Release|Any CPU
+		{F99BDD69-F887-4026-89AB-97F49B9BBDA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F99BDD69-F887-4026-89AB-97F49B9BBDA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F99BDD69-F887-4026-89AB-97F49B9BBDA1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F99BDD69-F887-4026-89AB-97F49B9BBDA1}.Debug|x64.Build.0 = Debug|Any CPU
+		{F99BDD69-F887-4026-89AB-97F49B9BBDA1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F99BDD69-F887-4026-89AB-97F49B9BBDA1}.Debug|x86.Build.0 = Debug|Any CPU
+		{F99BDD69-F887-4026-89AB-97F49B9BBDA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F99BDD69-F887-4026-89AB-97F49B9BBDA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F99BDD69-F887-4026-89AB-97F49B9BBDA1}.Release|x64.ActiveCfg = Release|Any CPU
+		{F99BDD69-F887-4026-89AB-97F49B9BBDA1}.Release|x64.Build.0 = Release|Any CPU
+		{F99BDD69-F887-4026-89AB-97F49B9BBDA1}.Release|x86.ActiveCfg = Release|Any CPU
+		{F99BDD69-F887-4026-89AB-97F49B9BBDA1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AEAC3BA2-CD46-4EFA-9D23-7C7A76D34BDC}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6E59B9BE-3DF4-42FD-A203-A2A09292A15C} = {80CD5C8B-F6E3-4622-A445-7338843A790B}
+		{F99BDD69-F887-4026-89AB-97F49B9BBDA1} = {6E59B9BE-3DF4-42FD-A203-A2A09292A15C}
 	EndGlobalSection
 EndGlobal

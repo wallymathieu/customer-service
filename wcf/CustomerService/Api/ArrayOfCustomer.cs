@@ -2,7 +2,7 @@
 
 namespace Customers
 {
-    [DataContract(Name = "Customer", Namespace = "http://schemas.datacontract.org/2004/07/Customers")]
+    [DataContract(Name = "ArrayOfCustomer", Namespace = "http://schemas.datacontract.org/2004/07/Customers")]
     public class ArrayOfCustomer
     {
         public ArrayOfCustomer()
