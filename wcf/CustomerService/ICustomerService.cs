@@ -18,25 +18,25 @@ namespace Customers
     public interface ICustomerService
     {
         [WebInvoke(Method = "GET",
- BodyStyle = WebMessageBodyStyle.WrappedRequest,
+ BodyStyle = WebMessageBodyStyle.Bare,
  ResponseFormat = WebMessageFormat.Xml)]
         [OperationContract(Action = "http://www.galasoft.ch/CustomerService/GetCustomers", ReplyAction = "http://www.galasoft.ch/CustomerService/GetCustomersResponse")]
         Customers.Customer[] GetCustomers(string lastName);
 
         [WebInvoke(Method = "GET",
-BodyStyle = WebMessageBodyStyle.WrappedRequest,
+BodyStyle = WebMessageBodyStyle.Bare,
 ResponseFormat = WebMessageFormat.Xml)]
         [OperationContract(Action = "http://www.galasoft.ch/CustomerService/GetCustomerByAccountNumber", ReplyAction = "http://www.galasoft.ch/CustomerService/GetCustomerByAccountNumberResponse")]
         Customers.Customer GetCustomerByAccountNumber(int accountNumber);
 
         [WebInvoke(Method = "GET",
- BodyStyle = WebMessageBodyStyle.WrappedRequest,
+ BodyStyle = WebMessageBodyStyle.Bare,
  ResponseFormat = WebMessageFormat.Xml)]
         [OperationContract(Action = "http://www.galasoft.ch/CustomerService/GetAllCustomers", ReplyAction = "http://www.galasoft.ch/CustomerService/GetAllCustomersResponse")]
         Customers.Customer[] GetAllCustomers();
 
         [WebInvoke(Method = "POST",
-BodyStyle = WebMessageBodyStyle.WrappedRequest,
+BodyStyle = WebMessageBodyStyle.Bare,
 ResponseFormat = WebMessageFormat.Xml)]
         [OperationContract(Action = "http://www.galasoft.ch/CustomerService/SaveCustomer", ReplyAction = "http://www.galasoft.ch/CustomerService/SaveCustomerResponse")]
         bool SaveCustomer(Customers.Customer editedCustomer);
