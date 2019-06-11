@@ -1,0 +1,120 @@
+---
+swagger: "2.0"
+info:
+  description: "Some API"
+  version: "1.0.0"
+  title: "API"
+  termsOfService: "See license agreement"
+paths:
+  /CustomerService.svc/GetAllCustomers:
+    get:
+      tags:
+      - "CustomerService"
+      operationId: "Get"
+      consumes: []
+      produces:
+      - "text/plain"
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ArrayOfCustomer"
+  /CustomerService.svc/SaveCustomer:
+    post:
+      tags:
+      - "CustomerService"
+      operationId: "Post"
+      consumes:
+      - "application/json-patch+json"
+      - "application/json"
+      - "text/json"
+      - "application/*+json"
+      - "application/xml"
+      - "text/xml"
+      - "application/*+xml"
+      produces:
+      - "text/plain"
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Customer"
+        x-exportParamName: "Body"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "boolean"
+definitions:
+  ArrayOfCustomer:
+    type: "object"
+    properties:
+      customer:
+        type: "array"
+        items:
+          $ref: "#/definitions/Customer"
+    example:
+      customer:
+      - addressCountry: "addressCountry"
+        firstName: "firstName"
+        lastName: "lastName"
+        gender: 6
+        addressStreet: "addressStreet"
+        pictureUri: {}
+        accountNumber: 0
+        addressCity: "addressCity"
+      - addressCountry: "addressCountry"
+        firstName: "firstName"
+        lastName: "lastName"
+        gender: 6
+        addressStreet: "addressStreet"
+        pictureUri: {}
+        accountNumber: 0
+        addressCity: "addressCity"
+  Customer:
+    type: "object"
+    properties:
+      accountNumber:
+        type: "integer"
+        format: "int32"
+      addressCity:
+        type: "string"
+      addressCountry:
+        type: "string"
+      addressStreet:
+        type: "string"
+      firstName:
+        type: "string"
+      gender:
+        type: "integer"
+        format: "int32"
+        enum:
+        - 0
+        - 1
+        - 2
+        - 3
+      lastName:
+        type: "string"
+      pictureUri:
+        $ref: "#/definitions/XmlUri"
+    example:
+      addressCountry: "addressCountry"
+      firstName: "firstName"
+      lastName: "lastName"
+      gender: 6
+      addressStreet: "addressStreet"
+      pictureUri: {}
+      accountNumber: 0
+      addressCity: "addressCity"
+  XmlUri:
+    type: "object"
