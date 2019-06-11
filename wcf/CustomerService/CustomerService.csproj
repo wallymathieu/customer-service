@@ -11,10 +11,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\SoapCore\src\SoapCore\SoapCore.csproj" />
+    <PackageReference Include="SoapCore" Version="0.9.9.5" />
   </ItemGroup>
 
 </Project>
