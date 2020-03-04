@@ -12,6 +12,7 @@ script:
   - (cd ./node/ && npm install && npm run test)
   - (cd ./aspnet-mvc/ && ./build.sh test)
   - (cd ./wcf/ && ./build.sh test)
+  - gem install bundler
   - (cd ./sinatra/ && bundle install && bundle exec rake test)
   - (cd ./rails/ && bundle install && bundle exec rake test)
 branches:
