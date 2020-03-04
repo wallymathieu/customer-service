@@ -12,7 +12,9 @@ script:
   - cd ./nancy/ && ./build.sh && cd ..
   - cd ./node/ && npm install && npm run test && cd ..
   - cd ./aspnet-mvc/ && ./build.sh test && cd ..
-  - cd ./aspnet-wcf/ && ./build.sh test && cd ..
+  - cd ./wcf/ && ./build.sh test && cd ..
+  - cd ./sinatra/ && bundle install && bundle exec rake test
+  - cd ./rails/ && bundle install && bundle exec rake test
 branches:
   only: 
     - master
