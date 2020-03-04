@@ -57,3 +57,4 @@ packages/
 *.userprefs
 .idea
 
+.ionide/

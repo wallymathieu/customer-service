@@ -1,18 +1,20 @@
-sudo: false
 language: csharp 
-dist: trusty
-dotnet: 2.1.301
+dist: bionic
+dotnet: 2.2.401
 install:
   # workaround for missing .net 4.5 targing pack
   - export FrameworkPathOverride=$(dirname $(which mono))/../lib/mono/4.5/
 script: 
-  - cd ./clean-aspnet-core/ && ./build.sh && cd ..
-  - cd ./suave/ && ./build.sh test && cd ..
-  - cd ./clean-aspnet-core-fsharp/ && ./build.sh test && cd ..
-  - cd ./nancy/ && ./build.sh && cd ..
-  - cd ./node/ && npm install && npm run test && cd ..
-  - cd ./aspnet-mvc/ && ./build.sh test && cd ..
-  - cd ./aspnet-wcf/ && ./build.sh test && cd ..
+  - (cd ./clean-aspnet-core/ && ./build.sh)
+  - (cd ./suave/ && ./build.sh test)
+  - (cd ./clean-aspnet-core-fsharp/ && ./build.sh test)
+  - (cd ./nancy/ && ./build.sh)
+  - (cd ./node/ && npm install && npm run test)
+  - (cd ./aspnet-mvc/ && ./build.sh test)
+  - (cd ./wcf/ && ./build.sh test)
+  - gem install bundler
+  - (cd ./sinatra/ && bundle install && bundle exec rake test)
+  - (cd ./rails/ && bundle install && bundle exec rake test)
 branches:
   only: 
     - master
