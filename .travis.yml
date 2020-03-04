@@ -1,6 +1,5 @@
-sudo: false
 language: csharp 
-dist: trusty
+dist: xenial
 dotnet: 2.2.401
 install:
   # workaround for missing .net 4.5 targing pack
