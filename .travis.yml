@@ -6,15 +6,15 @@ install:
   # workaround for missing .net 4.5 targing pack
   - export FrameworkPathOverride=$(dirname $(which mono))/../lib/mono/4.5/
 script: 
-  - cd ./clean-aspnet-core/ && ./build.sh && cd ..
-  - cd ./suave/ && ./build.sh test && cd ..
-  - cd ./clean-aspnet-core-fsharp/ && ./build.sh test && cd ..
-  - cd ./nancy/ && ./build.sh && cd ..
-  - cd ./node/ && npm install && npm run test && cd ..
-  - cd ./aspnet-mvc/ && ./build.sh test && cd ..
-  - cd ./wcf/ && ./build.sh test && cd ..
-  - cd ./sinatra/ && bundle install && bundle exec rake test
-  - cd ./rails/ && bundle install && bundle exec rake test
+  - (cd ./clean-aspnet-core/ && ./build.sh)
+  - (cd ./suave/ && ./build.sh test)
+  - (cd ./clean-aspnet-core-fsharp/ && ./build.sh test)
+  - (cd ./nancy/ && ./build.sh)
+  - (cd ./node/ && npm install && npm run test)
+  - (cd ./aspnet-mvc/ && ./build.sh test)
+  - (cd ./wcf/ && ./build.sh test)
+  - (cd ./sinatra/ && bundle install && bundle exec rake test)
+  - (cd ./rails/ && bundle install && bundle exec rake test)
 branches:
   only: 
     - master
