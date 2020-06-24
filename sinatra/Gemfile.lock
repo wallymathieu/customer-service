@@ -8,7 +8,7 @@ GEM
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     nori (2.6.0)
-    rack (2.2.2)
+    rack (2.2.3)
     rack-parser (0.7.0)
       rack
     rack-protection (2.0.8.1)
