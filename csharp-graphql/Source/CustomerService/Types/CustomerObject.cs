@@ -33,42 +33,4 @@ namespace CustomerService.Types
 
         }
     }
-
-    public class NameObject : ObjectType<Name>
-    {
-        protected override void Configure(IObjectTypeDescriptor<Name> descriptor)
-        {
-            descriptor
-                .Name("Name")
-                .Description("A name.");
-            descriptor
-                .Field(x => x.First)
-                .Description("The first name.");
-
-            descriptor
-                .Field(x => x.Last)
-                .Description("The last name.");
-
-        }
-    }
-    public class AddressObject : ObjectType<Address>
-    {
-        protected override void Configure(IObjectTypeDescriptor<Address> descriptor)
-        {
-            descriptor
-                .Name("Address")
-                .Description("An address.");
-
-            descriptor
-                .Field(x => x.City)
-                .Description("The city.");
-            descriptor
-                .Field(x => x.Country)
-                .Description("The country.");
-            descriptor
-                .Field(x => x.Street)
-                .Description("The street.");
-
-        }
-    }
 }
