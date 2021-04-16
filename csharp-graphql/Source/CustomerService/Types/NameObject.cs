@@ -1,6 +1,7 @@
 namespace CustomerService.Types
 {
-    using CustomerService.Models;
+    using Models;
+    using HotChocolate.Types;
 
     public class NameObject : ObjectType<Name>
     {

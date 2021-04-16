@@ -1,6 +1,6 @@
 namespace CustomerService.Types
 {
-    using CustomerService.Resolvers;
+    using Resolvers;
     using HotChocolate.Types;
 
     /// <summary>

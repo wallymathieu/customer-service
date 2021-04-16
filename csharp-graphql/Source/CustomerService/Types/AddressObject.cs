@@ -1,6 +1,7 @@
 namespace CustomerService.Types
 {
     using CustomerService.Models;
+    using HotChocolate.Types;
 
     public class AddressObject : ObjectType<Address>
     {
