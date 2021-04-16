@@ -56,8 +56,8 @@ namespace CustomerService.Types
         protected override void Configure(IObjectTypeDescriptor<Address> descriptor)
         {
             descriptor
-                .Name("Name")
-                .Description("A name.");
+                .Name("Address")
+                .Description("An address.");
 
             descriptor
                 .Field(x => x.City)
