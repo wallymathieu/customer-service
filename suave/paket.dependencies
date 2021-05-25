@@ -1,14 +1,4 @@
 source https://www.nuget.org/api/v2/
 
-nuget FAKE
-nuget FluentAssertions
-nuget FSharp.Core
-nuget FsPickler framework: >= net45
-nuget FsUnit
-nuget NUnit
-nuget NUnit.Runners
-nuget Suave framework: >= net45
-nuget FSharpx.Extras
-
 github wallymathieu/Perch lib/Enum.fs
 github wallymathieu/Perch lib/Xml.fs

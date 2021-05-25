@@ -1,12 +1,21 @@
 @echo off
-.paket\paket.bootstrapper.exe
+dotnet tool restore 
 if errorlevel 1 (
   exit /b %errorlevel%
 )
-
-.paket\paket.exe restore
+dotnet tool run paket restore 
 if errorlevel 1 (
   exit /b %errorlevel%
 )
-
-packages\FAKE\tools\FAKE.exe build.fsx %*
+dotnet restore 
+if errorlevel 1 (
+  exit /b %errorlevel%
+)
+dotnet build 
+if errorlevel 1 (
+  exit /b %errorlevel%
+)
+dotnet test
+if errorlevel 1 (
+  exit /b %errorlevel%
+)

@@ -1,13 +1,11 @@
 ﻿namespace Customers
+
 open Suave
-open Suave.Web
-open Suave.Http
-open Suave.Types
-open Suave.Http.Successful
-open Suave.Http.Redirection
-open Suave.Http.Files
-open Suave.Http.RequestErrors
-open Suave.Http.Applicatives
+open Suave.Operators
+open Suave.Filters
+open Suave.Writers
+open Suave.Successful
+
 #if COMPILED
 
 (* module BoilerPlateForForm =[<System.STAThread>] do () *)
@@ -16,16 +14,12 @@ open Suave.Http.Applicatives
     module Main=
         let private c = new CustomerService()
         let app : WebPart =
+            let getAllCustomers = path "/CustomerService.svc/GetAllCustomers" >=> setMimeType "application/xml" >=> OK(HttpAdapter.GetAllCustomers(c))
+            let getIndex = path "/" >=> OK HttpAdapter.index
+            let postCustomer = path "/CustomerService.svc/SaveCustomer" >=> request (fun req -> OK(HttpAdapter.SaveCustomer c req.rawForm))
             choose 
-                [ GET >>= choose
-                    [ path "/CustomerService.svc/GetAllCustomers"
-                         >>= Writers.setMimeType "application/xml" 
-                         >>= OK(HttpAdapter.GetAllCustomers(c))
-                      path "/" >>= OK HttpAdapter.index
-                    ]
-                  POST >>= choose
-                    [ path "/CustomerService.svc/SaveCustomer" 
-                        >>= request (fun req -> OK(HttpAdapter.SaveCustomer c req.rawForm)) ]
+                [ GET >=> choose [ getAllCustomers; getIndex ]
+                  POST >=> choose [ postCustomer ]
                 ]
 
         [<EntryPoint>]

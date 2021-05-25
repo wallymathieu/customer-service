@@ -72,7 +72,7 @@ module Serializer =
                 | CustomerOutput.Single c -> XDoc.create([ toCustomerXml(c) ])
         d.ToString()
 
-    let deserialize input =
+    let deserialize (input:byte array) =
         let doc = Xml.parse(Encoding.UTF8.GetString(input))
         match doc.Root.Name.LocalName with
             | "Customer" -> CustomerInput.Single(fromCustomerXml doc.Root)
