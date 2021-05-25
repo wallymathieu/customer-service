@@ -1,26 +1,28 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    mini_portile2 (2.4.0)
-    minitest (5.14.0)
+    mini_portile2 (2.5.1)
+    minitest (5.14.4)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
-    nokogiri (1.10.9)
-      mini_portile2 (~> 2.4.0)
+    nokogiri (1.11.5)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     nori (2.6.0)
+    racc (1.5.2)
     rack (2.2.3)
     rack-parser (0.7.0)
       rack
-    rack-protection (2.0.8.1)
+    rack-protection (2.1.0)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
-    rake (13.0.1)
-    ruby2_keywords (0.0.2)
-    sinatra (2.0.8.1)
+    rake (13.0.3)
+    ruby2_keywords (0.0.4)
+    sinatra (2.1.0)
       mustermann (~> 1.0)
-      rack (~> 2.0)
-      rack-protection (= 2.0.8.1)
+      rack (~> 2.2)
+      rack-protection (= 2.1.0)
       tilt (~> 2.0)
     tilt (2.0.10)
 
@@ -35,9 +37,6 @@ DEPENDENCIES
   rack-test
   rake
   sinatra
-
-RUBY VERSION
-   ruby 2.5.3p105
 
 BUNDLED WITH
    1.17.3

@@ -1,12 +1,10 @@
 ﻿namespace Tests
 open System
 open NUnit.Framework
-open FsUnit
 open Customers
 open System.Text
-open FluentAssertions
-open FluentAssertions.Xml
 open System.Xml.Linq
+open FluentAssertions
 
     [<TestFixture>] 
     type ``ContractTests``() =
