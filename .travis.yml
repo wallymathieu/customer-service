@@ -5,7 +5,6 @@ install:
   # workaround for missing .net 4.5 targing pack
   - export FrameworkPathOverride=$(dirname $(which mono))/../lib/mono/4.5/
 script: 
-  - (cd ./clean-aspnet-core/ && ./build.sh)
   - (cd ./clean-aspnet-core-fsharp/ && ./build.sh test)
   - (cd ./nancy/ && ./build.sh)
   - (cd ./node/ && npm install && npm run test)

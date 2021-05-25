@@ -20,7 +20,7 @@ namespace Customers
                 }
                 catch (System.Exception)
                 {
-                    value = default(T);
+                    value = default;
                     return false;
                 }
 
@@ -30,7 +30,7 @@ namespace Customers
                     value = obj;
                     return true;
                 }
-                value = default(T);
+                value = default;
                 return false;
             }
         }

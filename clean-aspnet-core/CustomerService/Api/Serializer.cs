@@ -2,6 +2,7 @@
 using System.IO;
 using System.Xml.Serialization;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Customers
 {
@@ -21,9 +22,11 @@ namespace Customers
 
         private static XmlRootAttribute GetRootNs(Type t)
         {
-            XmlRootAttribute rootNs =  new XmlRootAttribute();
-            rootNs.ElementName = t.Name;
-            rootNs.IsNullable = true;
+            XmlRootAttribute rootNs = new XmlRootAttribute
+            {
+                ElementName = t.Name,
+                IsNullable = true
+            };
             return rootNs;
         }
 
@@ -46,13 +49,13 @@ namespace Customers
 
         public T Deserialize<T>(Stream input) => 
             (T)XmlSerializerForType(typeof(T)).Deserialize(input);
-        public T Deserialize<T>(string input)
+        public async Task<T> DeserializeAsync<T>(string input)
         {
             using (var stream = new MemoryStream())
             using (var streamWriter = new StreamWriter(stream))
             {
-                streamWriter.Write(input);
-                streamWriter.Flush();
+                await streamWriter.WriteAsync(input);
+                await streamWriter.FlushAsync();
                 stream.Seek(0, SeekOrigin.Begin);
                 return Deserialize<T>(stream);
             }
