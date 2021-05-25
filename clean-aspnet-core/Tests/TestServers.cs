@@ -21,7 +21,7 @@ namespace Tests
                     .UseStartup<T>()
                 ;
 
-            return new TestServer(host);
+            return new TestServer(host) { AllowSynchronousIO=true };
         }
     }
 }
