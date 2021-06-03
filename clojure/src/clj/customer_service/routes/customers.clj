@@ -3,6 +3,7 @@
      [customer-service.customers :as customers]
      [clojure.tools.logging :as log]
      [customer-service.middleware :as middleware]
+     [customer-service.schema :as s]
      [ring.util.response]
      [ring.util.http-response :as response]))
 
@@ -12,16 +13,13 @@
     (response/ok (customers/read-all)
     ))
 
-;(defn save [request]
-;    (if-let [current (customers/read id)]
-;        (response/ok (customers/update id (merge current request-body)) request)
-;        (response/not-found)))
-    
+(defn save [request]
+    (response/ok (customers/update (:body request)) request))
 
 (defn customer-routes []
     [ "/CustomerService.svc" 
         {:middleware [middleware/wrap-formats]}
         ["/GetAllCustomers" {:get get-all}]
-        ;["/SaveCustomer" {:post save}]
+        ["/SaveCustomer" {:post save}]
         ])
     
