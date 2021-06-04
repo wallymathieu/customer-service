@@ -14,7 +14,7 @@
     ))
 
 (defn save [request]
-    (response/ok (customers/update (:body request)) request))
+    (response/ok (customers/update (:body request))))
 
 (defn customer-routes []
     [ "/CustomerService.svc" 
