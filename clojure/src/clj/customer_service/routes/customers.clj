@@ -13,8 +13,9 @@
     (response/ok (customers/read-all)
     ))
 
-(defn save [request]
-    (response/ok (customers/update (:body request))))
+(defn save [{:keys [body-params] :as request}]
+  (let [customer body-params]
+    (response/ok (customers/update customer))))
 
 (defn customer-routes []
     [ "/CustomerService.svc" 
