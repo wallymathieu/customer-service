@@ -51,7 +51,8 @@
    :dev           [:project/dev :profiles/dev]
    :test          [:project/dev :project/test :profiles/test]
 
-   :project/dev  {:jvm-opts ["-Dconf=dev-config.edn" ]
+   :project/dev  {:jvm-opts ["-Dconf=dev-config.edn" 
+                             "--add-opens=java.base/java.io=ALL-UNNAMED"]
                   :dependencies [[pjstadig/humane-test-output "0.11.0"]
                                  [prone "2021-04-23"]
                                  [ring/ring-devel "1.9.3"]
@@ -65,7 +66,8 @@
                                  :timeout 120000}
                   :injections [(require 'pjstadig.humane-test-output)
                                (pjstadig.humane-test-output/activate!)]}
-   :project/test {:jvm-opts ["-Dconf=test-config.edn" ]
+   :project/test {:jvm-opts ["-Dconf=test-config.edn" 
+                             "--add-opens=java.base/java.io=ALL-UNNAMED"]
                   :resource-paths ["env/test/resources"] }
    :profiles/dev {}
    :profiles/test {}})
