@@ -17,7 +17,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, macOS-latest, windows-latest]
 
     runs-on: ${{ matrix.os }}
 
@@ -37,13 +37,17 @@ jobs:
           cli: 1.10.3.855 # Clojure CLI based on tools.deps
           lein: 2.9.6     # or use 'latest' to always provision latest version of leiningen
 
-      - name: Execute clojure code on Linux and MacOS
+      - name: Check 
+        working-directory: ${{env.FILE_PATH}}
+        run: lein check 
+
+      - name: Test on Linux and MacOS
         if: ${{ matrix.os != 'windows-latest' }}
         working-directory: ${{env.FILE_PATH}}
         run: lein test
         shell: bash
 
-      - name: Execute clojure code on Windows
+      - name: Test on Windows
         if: ${{ matrix.os == 'windows-latest' }}
         working-directory: ${{env.FILE_PATH}}
         run: lein test
