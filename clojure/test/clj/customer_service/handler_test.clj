@@ -14,12 +14,10 @@
 (use-fixtures
   :once
   (fn [f]
-    (mount/start #'customer-service.config/env
-                 #'customer-service.customers/cache
+    (mount/start #'customer-service.customers/cache
                  #'customer-service.handler/app-routes)
     (f)
-    (mount/stop #'customer-service.config/env
-                #'customer-service.customers/cache
+    (mount/stop #'customer-service.customers/cache
                 #'customer-service.handler/app-routes)))
 
 (deftest test-app
