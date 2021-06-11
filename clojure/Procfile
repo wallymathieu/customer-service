@@ -1,0 +1,1 @@
+web: java -Dclojure.main.report=stderr -cp target/uberjar/customer-service.jar clojure.main -m customer-service.core
