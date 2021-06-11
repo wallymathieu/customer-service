@@ -28,15 +28,14 @@ jobs:
       - name: Prepare java
         uses: actions/setup-java@v1
         with:
-          java-version: 1.8
+          java-version: 1.11
 
       - name: Install clojure tools
         uses: DeLaGuardo/setup-clojure@3.4
         with:
           # Install just one or all simultaneously
-          cli: 1.10.1.693 # Clojure CLI based on tools.deps
-          lein: 2.9.1     # or use 'latest' to always provision latest version of leiningen
-          boot: 2.8.3     # or use 'latest' to always provision latest version of boot
+          cli: 1.10.3.855 # Clojure CLI based on tools.deps
+          lein: 2.9.6     # or use 'latest' to always provision latest version of leiningen
 
       - name: Execute clojure code on Linux and MacOS
         if: ${{ matrix.os != 'windows-latest' }}
@@ -54,8 +53,3 @@ jobs:
         working-directory: ${{env.FILE_PATH}}
         run: lein -v
         
-      - name: Get boot version
-        # Boot is not yet available for windows
-        if: ${{ matrix.os != 'windows-latest' }}
-        working-directory: ${{env.FILE_PATH}}
-        run: boot -V
